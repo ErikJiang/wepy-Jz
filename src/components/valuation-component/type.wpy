@@ -1,0 +1,44 @@
+<style lang="less">
+.valtype {
+  overflow: hidden;
+  float: left;
+  .hotStyle {
+    margin-bottom: 140rpx;
+  }
+}
+</style>
+<template>
+  <view class="valtype">
+    <view class="defaul">
+      <repeat for="{{listdata.defaulList}}" index="index" item="item" key="index">
+        <Typetag :shenfun="item" />
+      </repeat>
+    </view>
+    <view class="font16">热门款式</view>
+    <view class="hotStyle">
+        <repeat for="{{listdata.hostStyle}}" index="index" item="line" key="index">
+          <Typetag :shenfun="line" />
+        </repeat>
+      </view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import Typetag from './chil/typetag'
+export default class Valtype extends wepy.component {
+  data = {
+    listdata: {}
+  }
+  components = {
+    Typetag
+  }
+  events = {
+    'prodata-ls': (t) => {
+      if (t) {
+        this.listdata = t
+      }
+    }
+  }
+}
+</script>

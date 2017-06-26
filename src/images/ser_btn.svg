@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>ser_btn</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EFEFEF" offset="0%"></stop>
+            <stop stop-color="#DCDADA" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="60" cy="60" r="60"></circle>
+        <filter x="-5.8%" y="-4.2%" width="111.7%" height="111.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.10767663 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-8" transform="translate(2.000000, 2.000000)">
+            <g id="Group-22" opacity="0.85">
+                <g id="Group-21">
+                    <g id="Oval-12">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="#FAFAFA" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <circle stroke="url(#linearGradient-1)" stroke-width="2" cx="60" cy="60" r="59"></circle>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-7" transform="translate(23.255814, 24.186047)">
+                <g id="Group-5" transform="translate(20.465116, 30.697674)" fill="#F8C300">
+                    <ellipse id="Oval-4" cx="3.72093023" cy="3.72093023" rx="3.72093023" ry="3.72093023"></ellipse>
+                    <ellipse id="Oval-4-Copy" cx="29.7674419" cy="3.72093023" rx="3.72093023" ry="3.72093023"></ellipse>
+                </g>
+                <g id="Group-6">
+                    <path d="M71.627907,34.4186047 C71.627907,15.4097342 56.2181728,0 37.2093023,0 C18.2004319,0 2.79069767,15.4097342 2.79069767,34.4186047 C2.79069767,53.4274751 18.2004319,68.8372093 37.2093023,68.8372093 L37.2093023,68.8372093" id="Oval-3" stroke="#F8C300" stroke-width="3"></path>
+                    <rect id="Rectangle-2" fill="#F8C300" x="0" y="25.1162791" width="7.44186047" height="18.6046512" rx="3.72093023"></rect>
+                    <rect id="Rectangle-2-Copy" fill="#F8C300" x="66.9767442" y="25.1162791" width="7.44186047" height="18.6046512" rx="3.72093023"></rect>
+                    <circle id="Oval-4-Copy-2" fill="#F8C300" cx="34.4186047" cy="68.8372093" r="3.72093023"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,42 @@
+<style lang="less">
+.sizetag {
+  overflow: hidden;
+  width: 200rpx;
+  float: left;
+  margin-left: 40rpx;
+  image {
+    width: 200rpx;
+    height: 200rpx;
+    background-color: #ffffff;
+  }
+  .Valtag-font16 {
+    color: #898989;
+    font-size: 24rpx;
+    padding: 20rpx 0;
+    text-align: center;
+  }
+}
+</style>
+<template>
+  <view wx:if="shenfun" class="sizetag" @tap="valtype({{shenfun.id}}, {{step}}, {{shenfun}}, {{ datasend }}, {{shenfun.name}})">
+    <image src="{{ shenfun.logo }}"></image>
+    <view class="Valtag-font16">{{shenfun.name}}</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Sizetag extends wepy.component {
+  computed = {
+    shenfun() { },
+    step() { },
+    datasend() { }
+  }
+  methods = {
+    valtype(id, t, d, s, n) {
+      this.$emit('sch-num', t, null, n)
+      this.$emit(s, id, d)
+    }
+  }
+}
+</script>

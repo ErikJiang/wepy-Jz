@@ -1,0 +1,251 @@
+<style lang="less">
+.recycleOrder {
+  width: 100%;
+  overflow: hidden;
+  .shops-box {
+    overflow: hidden;
+    background-color: #ffffff;
+    padding: 0 20rpx;
+    margin-top: 8rpx;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    .shops-title {
+      overflow: hidden;
+      padding: 26rpx 0rpx;
+      border-bottom: 2rpx solid #f1f1f1;
+      .left {
+        font-size: 30rpx;
+        color: #474647;
+        float: left;
+        padding-left: 20rpx;
+        border-left: 8rpx solid #1d1d1b;
+      }
+      .right {
+        font-size: 30rpx;
+        color: #a6a6a6;
+        float: right;
+      }
+    }
+    .goods {
+      padding: 44rpx 0rpx;
+      overflow: hidden;
+      .condition-box {
+        margin-top: 100rpx;
+      }
+      .goods-info {
+        font-size: 24rpx;
+        .font16 {
+          color: #2f3134;
+          font-size: 28rpx;
+        }
+      }
+      .goods-box {
+        overflow: hidden;
+        padding-left: 20rpx;
+        height: 210rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .goods-img {
+        width: 230rpx;
+        height: 210rpx;
+        padding: 8rpx;
+        border: 2px solid #f1f1f1;
+        float: left;
+      }
+      .test {
+        font-size: 36rpx;
+        color: #1d1d1b;
+      }
+      .tag {
+        font-size: 28rpx;
+        color: #2f3134;
+      }
+      .condition {
+        padding-top: 18rpx;
+        font-size: 28rpx;
+        color: #898989;
+        overflow: hidden;
+        .fontcustur {
+          float: left;
+          .space {
+            width: 42rpx;
+            height: 20rpx;
+            display: inline-block;
+          }
+        }
+        .conditionname {
+          float: left;
+        }
+      }
+      .condition:last-child {
+        padding-top: 12rpx;
+      }
+    }
+    .brand-title {
+      display: flex;
+      justify-content: flex-start;
+      padding-bottom: 20rpx;
+      .font18 {
+        font-size: 44rpx;
+      }
+      .span {
+        display: inline-block;
+        font-weight: 100;
+        margin-left: 4rpx;
+        margin-top: 14rpx;
+        font-size: 24rpx;
+        padding: 4rpx 8rpx;
+        border: 2rpx solid #2f3134;
+        border-radius: 10rpx;
+        text-align: center;
+        line-height: 24rpx;
+      }
+    }
+  }
+  .careful {
+    padding: 100rpx 20rpx;
+    overflow: hidden;
+    .careful-title {
+      font-size: 34rpx;
+      color: #2f3134;
+      padding-bottom: 100rpx;
+      text-align: center;
+    }
+    .careful-explain {
+      overflow: hidden;
+      span {
+        float: left;
+        font-size: 24rpx;
+        color: #a6a6a6;
+        line-height: 44rpx;
+      }
+      .right {
+        max-width: 650rpx;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="recycleOrder">
+        <view class="recycleOrder-box">
+          <repeat for="{{shopsList}}" index="index" item="item" key="index">
+            <view class="shops-box">
+              <view class="shops-title">
+                <view class="left">回收订单号：{{ item.orderNum }}</view>
+                <view class="right">{{ item.state }}</view>
+              </view>
+              <view class="goods">
+                <image src="{{item.imgurl}}" class="goods-img"></image>
+                <view class="goods-box">
+                  <view class="brand-title">
+                    <view class="font18">{{ item.brand }}</view>
+                    <span class="span">{{ item.xin }}</span>
+                  </view>
+                  <view class="goods-info">
+                    <text class="font16">{{ item.model }}</text> |
+                    <text class="font16">{{ item.size }}</text>
+                  </view>
+                </view>
+                <view class="condition-box">
+                  <view class="condition">
+                    <view class="fontcustur">配
+                      <i class="space"></i>件：</view>
+                    <view class="conditionname">{{ item.parts }}</view>
+                  </view>
+                  <view class="condition">
+                    <view class="fontcustur">成
+                      <i class="space"></i>色：</view>
+                    <view class="conditionname">{{ item.condition }}</view>
+                  </view>
+                  <view class="condition">
+                    <view class="fontcustur">回收时间：</view>
+                    <view class="conditionname">{{ item.orderTime }}</view>
+                  </view>
+                  <view class="condition">
+                    <view class="fontcustur">回收地点：</view>
+                    <view class="conditionname">{{ item.reLocations }}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </repeat>
+        </view>
+        <view class="careful">
+          <view class="careful-title">· 注意事项 ·</view>
+          <view class="careful-explain" wx:for='{{carefulList}}' wx:key="item.id">
+            <span class="left">{{ item.id }}</span>
+            <span class="right">{{ item.info }}</span>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class RecycleOrder extends wepy.page {
+  config = {
+    navigationBarTitleText: '回收单'
+  }
+  data = {
+    shopsList: [
+      {
+        id: 3213,
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        size: '大号',
+        xin: '78新',
+        parts: '发票、身份卡、防尘袋',
+        condition: '五金件正常使用痕迹外表面明显瑕疵',
+        orderTime: '2017-06-21',
+        state: '已预约',
+        orderNum: '097897',
+        reLocations: '上海浦江新区'
+      },
+      {
+        id: 9520,
+        imgurl: 'http://img.91sph.com/goods//20170509//9fdf03bd-63b2-4d63-9703-90ea81eda0d2_s1.jpg',
+        brand: 'Louis Vuitton',
+        model: 'LV路易手提包',
+        size: '中号',
+        xin: '78新',
+        parts: '发票、身份卡、防尘袋',
+        condition: '五金件正常使用痕迹外表面明显瑕疵',
+        money: '7200',
+        orderTime: '2017-08-08',
+        state: '已预约',
+        orderNum: '1231234',
+        reLocations: '上海浦江新区'
+      }
+    ],
+    carefulList: [
+      {
+        id: '1、',
+        info: '我们是第三方回收平台，所有出价均由商家完成，我们为用户上门服务与质检服务，并不是直接回收商；'
+      },
+      {
+        id: '2、',
+        info: '按照国家法律所有有价回收物品，需要货主本人身份证备案，否则不予回收；'
+      },
+      {
+        id: '3、',
+        info: '如因物品来路不明、款式过老、成色过旧、疑似仿制品、或其他原因导致商家无人出价，简值平台并不承担回收责任可以随时取消交易。'
+      },
+      {
+        id: '4、',
+        info: '因二手物品的特殊性，用户一旦确认成交付款，用户不得退款退货。'
+      },
+      {
+        id: '5、',
+        info: '简值平台使用区块链技术与特殊防调换技术，保证整个交易安全透明，交易环节证据链完整可追溯。'
+      }
+    ]
+  }
+}
+</script>

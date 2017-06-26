@@ -1,0 +1,36 @@
+<style lang="less">
+  .titlelist{
+    margin: 0rpx 20rpx;
+    padding-left: 10rpx;
+    border-bottom:1px solid #f1f1f1;
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+    .title{
+      border-left: 8rpx solid #1d1d1b;
+      padding-left: 26rpx;
+      font-size: 18px;
+    }
+  }
+</style>
+<template>
+  <view class="titlelist">
+    <view class="title">
+      {{showtitle}}
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Titlelist extends wepy.component {
+  props = {
+    titletips: {}
+  }
+
+  computed = {
+    showtitle() {
+      return this.titletips
+    }
+  }
+}
+</script>

@@ -1,0 +1,51 @@
+<style lang="less">
+.seriestag {
+  overflow: hidden;
+  width: 224rpx;
+  height: 160rpx;
+  float: left;
+  margin-left: 20rpx;
+  background-color: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  .Valtag-font18 {
+    color: #474647;
+    font-size: 32rpx;
+    padding-bottom: 34rpx;
+  }
+  .Valtag-font16 {
+    color: #474647;
+    font-size: 24rpx;
+  }
+  .border-all {
+    padding: 2rpx 4rpx;
+    border: 1rpx solid #2f3134;
+    border-radius: 8rpx;
+  }
+}
+</style>
+<template>
+  <view wx:if="shenfun" class="seriestag" @tap="valtype({{shenfun.id}}, {{ shenfun.size }}, {{shenfun.serieN}})">
+    <view class="Valtag-font18">{{shenfun.serieN}}</view>
+    <view class="Valtag-font16 border-all">{{shenfun.serieinfo}}</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Seriestag extends wepy.component {
+  computed = {
+    shenfun() {}
+  }
+  methods = {
+    valtype(id, d, n) {
+      this.$emit('sch-num', 4, null, n)
+      this.$emit('series-setdata', id, d)
+    }
+  }
+}
+</script>

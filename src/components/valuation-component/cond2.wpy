@@ -1,0 +1,77 @@
+<style lang="less">
+.valsize {
+  overflow: hidden;
+}
+</style>
+<template>
+  <view class="fontTip">
+    · 五金件（多选）·
+  </view>
+  <view class="valsize">
+    <repeat for="{{listdata}}" index="index" item="item" key="index">
+      <view wx:if="item" class="mulselect" @tap="valtype({{item.id}}, {{nextstep}}, {{item}}, {{ senddata }})">
+        <image src="{{ item.logo }}"></image>
+        <view class="Valtag-font16">{{item.name}}</view>
+      </view>
+    </repeat>
+    <view class="nextset-box" @tap="tocond2({{newdata}})">
+      <view class="{{dataidLen.length > 0 ? 'nextset-To': 'showToast'}}" @tap="tocond3({{newdata}})">下一步</view>
+    </view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Valcond2 extends wepy.component {
+  props = {
+    listdata: {},
+    nextstep: {},
+    senddata: {}
+  }
+  data = {
+    proId: [],
+    proStep: '',
+    proData: '',
+    pronextData: ''
+  }
+  computed = {
+    newdata() {
+      return [this.proId, this.proStep, this.proData, this.pronextData]
+    },
+    dataidLen() {
+      return this.proId
+    }
+  }
+  methods = {
+    valtype(id, step, d, s) {
+      this.proId.push(id)
+      this.proStep = step
+      this.proData = d
+      this.pronextData = s
+    },
+    tocond3(e) {
+      if (this.proId.length > 0) {
+        let [id, step, d, s] = e
+        let newId = Array.from(new Set(id))
+        this.$emit('chengse-num', step, null)
+        this.$emit(s, newId, d)
+      } else {
+        wepy.showToast({
+          title: '请至少选择一种',
+          image: '../../../images/toart_icon.png',
+          duration: 1000
+        })
+      }
+    }
+  }
+  events = {
+    'cond2-ls': (t, n, s) => {
+      if (t) {
+        this.listdata = t
+        this.nextstep = n
+        this.senddata = s
+      }
+    }
+  }
+}
+</script>

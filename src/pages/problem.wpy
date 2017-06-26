@@ -1,0 +1,272 @@
+<style lang="less">
+.problem {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 200rpx;
+  .problem-item {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 4rpx;
+    .short-intr {
+      overflow: hidden;
+      padding: 40rpx 40rpx;
+      background-color: #ffffff;
+      .textFont {
+        float: left;
+        font-size: 36rpx;
+        color: #1d1d1b;
+        letter-spacing: 2.81px;
+        text-align: left;
+      }
+      .list-icon {
+        float: right;
+        width: 48rpx;
+        height: 48rpx;
+      }
+    }
+    .infoContent{
+      padding: 0rpx 20rpx;
+      margin-bottom: 58rpx;
+      .content-box{
+        margin-top: 60rpx;
+        .title{
+           font-size: 28rpx;
+           color:#1d1d1b;
+           padding-bottom: 34rpx;
+        }
+        .info-line{
+          font-size: 28rpx;
+          color:#a6a6a6;
+          line-height: 44rpx;
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="problem">
+        <repeat for="{{upData}}" index="index" item="item" key="index">
+          <view class="problem-item">
+            <view class="short-intr" @tap="itemClick({{item.id}})">
+              <text class="textFont">· {{item.name}}</text>
+              <image class="list-icon" src="{{ item.def == 'false' ?  '../images/chevron-up.svg' : '../images/chevron-down.svg' }}"></image>
+            </view>
+            <view wx:if="{{ item.def == 'false' ? false : true }}" class="infoContent">
+              <view class="content-box" wx:for="{{ item.content }}" wx:for-index="index" wx:for-item="line" wx:key="line.title">
+                 <view class="title">{{ line.title }}</view>
+                 <view class="info-line" wx:for="{{ line.info }}" wx:for-index="index" wx:for-item="info" wx:key="index">
+                   {{ info }}
+                 </view>
+              </view>
+            </view>
+          </view>
+        </repeat>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Problem extends wepy.page {
+  config = {
+    navigationBarTitleText: '常见问题'
+  }
+  data = {
+    problemList: [
+      {
+        id: 0,
+        name: '估价',
+        def: 'false',
+        content: [
+          {
+            title: '如何查找自己的包包的型号或类别？',
+            info: [
+              '1、自用包包，可以找到购买时的票据，或包包自带的身份识别卡，一般品牌都会有详细介绍。他人赠予的包包，可以咨询；',
+              '2、可以去所属品牌官网上检索查阅包包的类别与型号。',
+              '3、直接通过简值小程序平台在线咨询客服，或直接拨打电话咨询估价。'
+            ]
+          },
+          {
+            title: '有哪几种下单途径？',
+            info: [
+              '平台提供模糊估价的服务，如用户对自己物品型号、成色描述基本相似，则价格会在估价范围区间。但实际交易价格，以实际买家竞价的最高价为实际报价，估价仅为参考。'
+            ]
+          }
+        ]
+      },
+      {
+        id: 1,
+        name: '下单',
+        def: 'false',
+        content: [
+          {
+            title: '有哪几种下单途径？',
+            info: [
+              '1、可以通过简值小程序或微信公账号直接填写上门地址与预约时间下单。或者直接通过在线客服、电话预约下单。'
+            ]
+          },
+          {
+            title: '下单地址与电话有没有隐私泄露风险？',
+            info: [
+              '2、简值平台会严格对用户信息进行保密，并对上门服务人员进行专业的质检服务培训，用户不用担心个人隐私泄漏问题。'
+            ]
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: '上门',
+        def: 'false',
+        content: [
+          {
+            title: '在简值进行上门交易或门店交易，需提前注意什么？',
+            info: [
+              '1、用户需年满18周岁；',
+              '2、顾客在交易的时候，需提供本人的中华人民共和国第二代居民身份证（护照和驾驶证等不可使用）；',
+              '3、在交易前请提前准备好需回收产品；'
+            ]
+          },
+          {
+            title: '上门回收的时间需要多久？',
+            info: [
+              '一般货品上门交易时间在20分钟左右，核对、拍摄、后台鉴定，拍卖出价，确认回收，当成付款。'
+            ]
+          },
+          {
+            title: '简值平台支持邮寄回收么？',
+            info: [
+              '平台暂时只支持面对面回收，即上门回收或门店回收，不支持邮寄回收。'
+            ]
+          },
+          {
+            title: '如何核验上门服务人员为简值服务人员？',
+            info: [
+              '简值平台服务人员上门前会佩戴工作证、身份证，用户通过拨打电话：400123123，与平台核验其身份。'
+            ]
+          }
+        ]
+      },
+      {
+        id: 3,
+        name: '质检',
+        def: 'false',
+        content: [
+          {
+            title: '质检需要用户做什么配合？',
+            info: [
+              '1、咨询用户：简值平台服务人员会对用户咨询物品购置来源、时间、地址、价格等与物品相关的必要信息。',
+              '2、货品细节拍摄：服务人员会在全程摄像的情况下对物品各个细节进行拍摄质检。并上传推送至后端数千商家，进行拍卖。'
+            ]
+          }
+        ]
+      },
+      {
+        id: 4,
+        name: '交易',
+        def: 'false',
+        content: [
+          {
+            title: '简值平台是何种交易方式？',
+            info: [
+              '我们是第三方回收平台，所有出价均由商家完成，我们为用户上门服务与质检服务，并不是直接回收商；如因物品质量问题，商家无人出价，简值平台并不承担回收责任，可以随时取消交易。'
+            ]
+          },
+          {
+            title: '如何保证交易的价格是相对最高价？',
+            info: [
+              '简值平台为第三方免费帮卖服务平台，平台已入住数千家二手奢侈品商家，由他们出价竞拍，价高者得，整个过程简单透明，确保用户卖出最高价，作为第三方平台已达成交易为目标，并不干涉价格。'
+            ]
+          },
+          {
+            title: '哪些产品简值不进行上传回收竞拍？',
+            info: [
+              '1、高仿、A货，非正品简值平台不回收；',
+              '2、来路不明，或非合法渠道的产品，不回收；',
+              '3、款式过老、破损过于严重的暂时不回收；',
+              '4、简值暂时只支持部分品牌产品回收，轻奢、超重奢暂不回收；'
+            ]
+          }
+        ]
+      },
+      {
+        id: 5,
+        name: '付款',
+        def: 'false',
+        content: [
+          {
+            title: '平台采取何种付款方式？',
+            info: [
+              '1、交易成功后，会实时付款到用户的指定账户（银行卡、支付宝、微信，暂不支持现金付款），用户确认到账之后，服务人员取走物品，交易完成。',
+              '2、如遇特殊物品，需通过线下买家鉴定，无法在线拍卖的，在用户同意的前提下，服务人员会把物品取走，拿到总部由买家鉴定后出价，如用户同意价格，则付款至用户指定账户，完成交易。'
+            ]
+          }
+        ]
+      },
+      {
+        id: 6,
+        name: '退货',
+        def: 'false',
+        content: [
+          {
+            title: '何种情况下发生退货？',
+            info: [
+              '1、根据国家对商品二次流通的相关法规规定，因二手物品的特殊性，货品确认成交付款后，用户与商家不得提出退款退货的要求。',
+              '2、简值平台使用区块链技术与特殊防调换技术，保证整个交易安全透明，交易环节证据链完整可追溯。如因物品来路不明、或在回收交易过程存在明显兜售假货的欺诈行为，平台有权为买家提出退货，并在有必要的前提下配合公安部门追回货款；'
+            ]
+          }
+        ]
+      },
+      {
+        id: 7,
+        name: '联系',
+        def: 'false',
+        content: [
+          {
+            title: '有哪几种联系渠道可以找到平台？',
+            info: [
+              '1、可以直接通过在线客服进行咨询；',
+              '2、平台客服热线电话是400--606--3001。',
+              '3、客户服务邮箱为：',
+              '4、平台微博：'
+            ]
+          }
+        ]
+      },
+      {
+        id: 8,
+        name: '其他',
+        def: 'false',
+        content: [
+          {
+            title: '产品回收之后如有纠纷如何保障双方利益？',
+            info: [
+              '1、简值平台网站是和公安联网的，交易中有涉及欺诈交易、赃物交易等非法行为的我们会在第一时间通过网络进行报案。',
+              '2、简值网站是提供平台给商户竞价回收的，简值作为第三方平台，帮助用户出售闲置奢侈品产品，另一端帮助商家回收产品，是作为第三方来担保，如交易中产生假货、或非合法途径获得的货品，简值平台会按照交易规则与国家法律，进行退货退款，或交由执法部门处理。'
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  computed = {
+    upData() {
+      return this.problemList
+    },
+    datamin() {
+      console.log('2312', this.problemList)
+    }
+  }
+  methods = {
+    itemClick(e) {
+      this.problemList.map((item) => {
+        item.def = 'false'
+      })
+      this.problemList[e].def === 'true' ? (this.problemList[e].def = 'false') : (this.problemList[e].def = 'true')
+    }
+  }
+}
+</script>

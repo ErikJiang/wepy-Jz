@@ -1,0 +1,118 @@
+<style lang="less">
+.valsize {
+  overflow: hidden;
+  width: 100%;
+}
+
+.nextset-box {
+  width: 100%;
+  display: inline-block;
+  .nextset-To {
+    display: block;
+    background-color: #f8c300;
+    border-radius: 20rpx;
+    width: 670rpx;
+    height: 82rpx;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 42rpx;
+    font-weight: 500;
+    letter-spacing: 3rpx;
+    line-height: 82rpx;
+    color: #ffffff;
+    margin-top: 40rpx;
+  }
+  .showToast {
+    display: block;
+    background-color: #C7C7CC;
+    border-radius: 20rpx;
+    width: 670rpx;
+    height: 82rpx;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 42rpx;
+    font-weight: 500;
+    letter-spacing: 3rpx;
+    line-height: 82rpx;
+    color: #ffffff;
+    margin-top: 40rpx;
+  }
+}
+</style>
+<template>
+  <view class="fontTip">
+    · 外表面（多选）·</view>
+  <view class="valsize">
+    <repeat for="{{listdata}}" index="index" item="item" key="index">
+      <view wx:if="item" class="mulselect" @tap="valtype({{item.id}}, {{nextstep}}, {{item}}, {{ senddata }}, {{index}})">
+        <image class="{{active == index ? 'active':''}}" src="{{ item.logo }}"></image>
+        <view class="Valtag-font16">{{item.name}}</view>
+      </view>
+    </repeat>
+  </view>
+  <view class="nextset-box" @tap="tocond2({{newdata}})">
+    <view class="{{dataidLen.length > 0 ? 'nextset-To': 'showToast'}}">下一步</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Valcond1 extends wepy.component {
+  props = {
+    listdata: {},
+    nextstep: {},
+    senddata: {}
+  }
+  data = {
+    active: 9999999,
+    proId: [],
+    proStep: '',
+    proData: '',
+    pronextData: ''
+  }
+  computed = {
+    newdata() {
+      return [this.proId, this.proStep, this.proData, this.pronextData]
+    },
+    dataidLen() {
+      return this.proId
+    },
+    activeS() {
+      return this.active
+    }
+  }
+  methods = {
+    valtype(id, step, d, s, index) {
+      this.active = index
+      this.proId.push(id)
+      this.proStep = step
+      this.proData = d
+      this.pronextData = s
+    },
+    tocond2(e) {
+      if (this.proId.length > 0) {
+        let [id, step, d, s] = e
+        let newId = Array.from(new Set(id))
+        console.log(id)
+        this.$emit('chengse-num', step, null)
+        this.$emit(s, newId, d)
+      } else {
+        wepy.showToast({
+          title: '请至少选择一种',
+          image: '../../../images/toart_icon.png',
+          duration: 1000
+        })
+      }
+    }
+  }
+  events = {
+    'cond1-ls': (t, n, s) => {
+      if (t) {
+        this.listdata = t
+        this.nextstep = n
+        this.senddata = s
+      }
+    }
+  }
+}
+</script>

@@ -1,0 +1,174 @@
+<style lang="less">
+.register {
+  width: 100%;
+  overflow: hidden;
+  .back-img {
+    width: 100%;
+    height: 450rpx;
+    background-image: url("http://7xp0bt.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170621105540.png");
+    background-size: 100% auto;
+    position: relative;
+    .register-title {
+      overflow: hidden;
+      position: absolute;
+      bottom: 44rpx;
+      width: 100%;
+      margin: 0rpx 36rpx;
+      .msg-title {
+        max-width: 486rpx;
+        float: left;
+        font-size: 28rpx;
+        color: #ffffff;
+      }
+      .icon-pro {
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0rpx;
+        right: 70rpx;
+        image {
+          width: 50rpx;
+          height: 50rpx;
+          margin: 0rpx 8rpx;
+        }
+      }
+    }
+  }
+  .form-box {
+    width: 100%;
+    overflow: hidden;
+    .submit-box {
+      background-color: #ffffff;
+      padding: 0rpx 20rpx;
+      overflow: hidden;
+    }
+    .user-box {
+      border-bottom: 1rpx solid #f1f1f1;
+      padding: 40rpx 0;
+      padding-left: 20rpx;
+      overflow: hidden;
+      position: relative;
+      .holder {
+        font-size: 30rpx;
+        color: #333333;
+        float: left;
+        margin-right: 34rpx;
+        line-height: 1.4rem;
+        .space {
+          width: 60rpx;
+          height: 20rpx;
+          display: inline-block;
+        }
+      }
+      input {
+        font-size: 30rpx;
+        float: left;
+        color: #c2c1c1;
+      }
+      .row_icon {
+        width: 48rpx;
+        height: 48rpx;
+        position: absolute;
+        right: 20rpx;
+        top: 40rpx;
+      }
+      .noshow {
+        height: 0rpx;
+        display: none;
+        opacity: 0;
+      }
+    }
+    .section {
+      margin-top: 60rpx;
+      .subButton {
+        display: block;
+        background-color: #f8c300;
+        border-radius: 20rpx;
+        width: 670rpx;
+        height: 82rpx;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 42rpx;
+        font-weight: 500;
+        letter-spacing: 3rpx;
+        line-height: 82rpx;
+        color: #ffffff;
+        margin-top: 40rpx;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="register">
+        <view class="back-img">
+          <view class="register-title">
+            <view class="msg-title">鉴定师会持身份证、工作证、全套工具为您免费上门进行回收服务</view>
+            <view class="icon-pro">
+              <image src="../images/dengji_icon_1.svg"></image>
+              <image src="../images/dengji_icon_2.svg"></image>
+              <image src="../images/dengji_icon_3.svg"></image>
+            </view>
+          </view>
+        </view>
+        <form class="form-box" bindsubmit="submit">
+          <view class="submit-box">
+            <view class="user-box" proId="getProId">
+              <input class="noshow" type="text" placeholder="回收人姓名" name="id" value="{{dataId}}">
+              <label class="holder">姓
+                <i class="space"></i>名</label>
+              <input type="text" placeholder="回收人姓名" name="name" value="{{userName}}">
+            </view>
+            <view class="user-box">
+              <label class="holder">联系电话</label>
+              <input type="text" placeholder="回收人电话" name="phone" value="{{userPhone}}">
+            </view>
+            <view class="user-box">
+              <label class="holder">上门地址</label>
+              <input type="text" placeholder="请输入上海外环内有效地址" name="address" value="{{userAddress}}">
+            </view>
+            <picker value="{{selectDate}}" mode="date" bindchange="bindDateChange" class="user-box">
+              <label class="holder">上门时间</label>
+              <input type="text" disabled="disabled" placeholder="上门时间" name="data" value="{{selectDate}}">
+              <image class="row_icon" src="../images/chevron-right.svg"></image>
+            </picker>
+          </view>
+          <view class="section">
+            <button class="subButton" type="primary" formType="submit">确认</button>
+          </view>
+        </form>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Register extends wepy.page {
+  config = {
+    navigationBarTitleText: '回收登记'
+  }
+  data = {
+    selectDate: '2017-6-21',
+    dataId: ''
+  }
+  methods = {
+    bindDateChange(e) {
+      console.log(e)
+      this.selectDate = e.detail.value
+    },
+    submit(e) {
+      // 手机信息
+      console.log(e.detail.value)
+    }
+  }
+  onLoad(option) {
+    this.dataId = option.id
+    console.log(option)
+  }
+}
+</script>

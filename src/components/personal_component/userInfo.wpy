@@ -1,0 +1,68 @@
+<style lang="less">
+.userInfo {
+  width: 100%;
+  height: 450rpx;
+  background-image: url("http://orvkyw2cc.bkt.clouddn.com/mine_bg_pic@2x.png");
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column; // align-items: center;
+  justify-content: center;
+
+  .userInfo-Box {
+    overflow: hidden;
+    margin-left: 88rpx;
+    .user-img {
+      float: left;
+      width: 180rpx;
+      height: 180rpx;
+      border-radius: 90rpx;
+    }
+    .userinfo-nickname {
+      float: left;
+      color: #000000;
+      font-size: 36rpx;
+      margin-left: 40rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 180rpx;
+      .protips {
+        font-size: 24rpx;
+        padding-top: 22rpx;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <view class="userInfo">
+    <view class="userInfo-Box">
+      <image class="user-img" src="{{ userInfo.avatarUrl }}" username="nameinfo"></image>
+      <view class="userinfo-nickname">
+        <view class="userName">{{ userInfo.nickName }}</view>
+        <view class="protips">{{ protips }}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class InfoTop extends wepy.component {
+  props = {
+    userInfo: {
+      nickName: '加载中...'
+    }
+  }
+  data = {
+    protips: '简法生活，物尽其值'
+  }
+  events = {
+    'set-userInfo': (t) => {
+      if (t) {
+        // console.log(t)
+        this.userInfo = t
+      }
+    }
+  }
+}
+</script>

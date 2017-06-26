@@ -1,0 +1,50 @@
+ 
+<style lang="less">
+// 常见问题组件
+.problemBox {
+  width: 364rpx;
+  height: 286rpx;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 1px;
+  padding: 50rpx 0px;
+  margin-bottom: 12rpx;
+  .charts1 {
+    width: 160rpx;
+    height: 130rpx;
+    overflow: initial;
+  }
+  .font-w {
+    padding-top: 20rpx;
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 20rpx;
+  }
+  .font14 {
+    font-size: 14px;
+    margin-top: 16rpx;
+    color: #868686;
+  }
+}
+</style>
+<template>
+  <view class="problemBox">
+    <image class="charts1" src="{{datalist.imgurl}}"></image>
+    <view class="font-w">{{ datalist.title1 }}</view>
+    <view class="font14">{{ datalist.title2 }}</view>
+    <view class="font14">{{ datalist.title3 }}</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class ProblemBox extends wepy.component {
+  props = {
+    datalist: {}
+  }
+}
+</script>

@@ -1,0 +1,67 @@
+<style lang="less">
+.index_content {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  .content-box {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+</style>
+<template>
+  <view class="index_content">
+    <view class="content-box" wx:for="{{contentList}}" wx:for-index="index" wx:for-item="item" wx:key="item.title">
+      <block wx:if="{{item.title=='最新回收'}}">
+        <Newest></Newest>
+      </block>
+      <block wx:if="{{item.title=='残值趋势'}}">
+        <ResidualTrend></ResidualTrend>
+      </block>
+      <block wx:if="{{item.title=='回收范围'}}">
+         <Ryrange></Ryrange>
+      </block>
+      <block wx:if="{{item.title=='常见问题'}}">
+         <Comproblem></Comproblem>
+      </block>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Newest from './chil/newest'
+import ResidualTrend from './chil/residualTrend'
+import Ryrange from './chil/ryrange'
+import Comproblem from './chil/comproblem'
+export default class Indexcontent extends wepy.component {
+  data = {
+    contentList: [
+      {
+        title: '最新回收',
+        link: 'javascript:void(0);'
+      },
+      {
+        title: '残值趋势',
+        link: 'javascript:void(0);'
+      },
+      {
+        title: '回收范围',
+        link: 'javascript:void(0);'
+      },
+      {
+        title: '常见问题',
+        link: ''
+      }
+    ],
+    api1: 'hao123.com'
+  }
+
+  components = {
+    Newest,
+    ResidualTrend,
+    Ryrange,
+    Comproblem
+  }
+}
+</script>

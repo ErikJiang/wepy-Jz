@@ -1,0 +1,61 @@
+<style lang="less">
+.othershops {
+  overflow: hidden;
+  .otherpice {
+    padding: 40rpx 0rpx 40rpx 20rpx;
+  }
+  .feedListbox {
+    margin-right: 0;
+  }
+  .othershop-box{
+    overflow: hidden;
+  }
+  .toValuation {
+    display: block;
+    background-color: #f8c300;
+    border-radius: 20rpx;
+    width: 670rpx;
+    height: 82rpx;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 42rpx;
+    font-weight: 500;
+    letter-spacing: 3rpx;
+    line-height: 82rpx;
+    color: #ffffff;
+    margin-top: 20rpx;
+  }
+  .valuation{
+    margin-bottom: 34rpx;
+    overflow: hidden;
+  }
+}
+</style>
+<template>
+  <view class="othershops">
+    <view class="otherpice">其他{{ getdata.shopName }}的报价：</view>
+    <view class="othershop-box">
+      <repeat for="{{getdata.item}}" index="index" item="item" key="index">
+        <Liststyle :listdata="item"></Liststyle>
+      </repeat>
+    </view>
+    <view class="valuation">
+      <navigator class="toValuation" url="../pages/details">马上估价</navigator>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Liststyle from '../list_component/liststyle'
+export default class Othershops extends wepy.component {
+  computed = {
+    getdata() {
+      return this.$parent.otherdata
+    }
+  }
+  components = {
+    Liststyle
+  }
+}
+</script>

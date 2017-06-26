@@ -1,0 +1,55 @@
+<style lang="less">
+.valbrand {
+  overflow: hidden;
+  .choose {
+    font-size: 38rpx;
+    color: #2f3134;
+    text-align: center;
+    padding: 60rpx 0;
+  }
+}
+</style>
+<template>
+  <view class="valbrand">
+    <repeat for="{{list}}" index="index" item="item" key="index">
+      <Valtag :listdata="item" />
+    </repeat>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import Valtag from './chil/tag'
+export default class Valbrand extends wepy.component {
+  props = {
+    listdata: {}
+  }
+  data = {
+    list: [
+      {
+        id: 1,
+        url: '../images/val_chanel_logo@2x.svg',
+        name: '路易威登'
+      },
+      {
+        id: 2,
+        url: '../images/val_dior_logo@2x.svg',
+        name: '路易威登'
+      },
+      {
+        id: 3,
+        url: '../images/val_gucci_logo@2x.svg',
+        name: '路易威登'
+      },
+      {
+        id: 4,
+        url: '../images/val_prada_logo@2x.svg',
+        name: '路易威登'
+      }
+    ]
+  }
+  components = {
+    Valtag
+  }
+}
+</script>

@@ -1,0 +1,119 @@
+<style lang="less">
+page {
+  background-color: #f7f7f7;
+}
+
+.srollBox {
+  overflow: hidden;
+  position: absolute;
+  .container {
+    background-color: #f7f7f7;
+  }
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-family: "Microsoft Yahei";
+}
+
+.srollBox {
+  overflow: hidden;
+  position: absolute;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/recycling',
+      'pages/details',
+      'pages/valuation',
+      'pages/personal',
+      'pages/myidle',
+      'pages/register',
+      'pages/myaccount',
+      'pages/opinion',
+      'pages/problem',
+      'pages/aboutUs',
+      'pages/evaluate',
+      'pages/recycleOrder',
+      'pages/valFist'
+
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#474647',
+      navigationBarTitleText: '简值奢侈品回收',
+      navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      color: '#a6a6a6',
+      selectedColor: '#f8c300',
+      list: [
+        {
+          pagePath: 'pages/index',
+          text: '回收',
+          iconPath: 'images/gujia_icon_1.png',
+          selectedIconPath: 'images/gujia_icon_2.png'
+        },
+        {
+          pagePath: 'pages/personal',
+          text: '我的',
+          iconPath: 'images/mine_icon_1.png',
+          selectedIconPath: 'images/mine_icon_2.png'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor() {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    this.testAsync()
+  }
+
+  sleep(s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async testAsync() {
+    const data = await this.sleep(3)
+    console.log(data)
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success(res) {
+        console.log(res)
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+  }
+}
+</script>

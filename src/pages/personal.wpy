@@ -1,0 +1,178 @@
+<style lang="less">
+.personal {
+  overflow: hidden;
+  width: 100%;
+  .navList {
+    padding: 40rpx 60rpx;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    .list-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .list_icon {
+        width: 100rpx;
+        height: 100rpx;
+      }
+      .item-font {
+        font-size: 28rpx;
+        color: #898989;
+      }
+    }
+    .list-bar:nth-child(2) {
+      border-left: 1px solid #f1f1f1;
+      border-right: 1px solid #f1f1f1;
+      padding: 0rpx 70rpx;
+    }
+  }
+  .feedback-list {
+    overflow: hidden;
+    margin-bottom: 50rpx;
+    .list-bar {
+      overflow: hidden;
+      background-color: #ffffff;
+      margin-top: 8rpx;
+      padding: 40rpx;
+      position: relative;
+    }
+    .list_icon {
+      width: 48rpx;
+      height: 48rpx;
+      position: absolute;
+      left: 40rpx;
+    }
+    .item-font {
+      font-size: 36rpx;
+      color: #898989;
+      padding-left: 60rpx;
+      display: inline-block;
+    }
+    .row_icon {
+      width: 48rpx;
+      height: 48rpx;
+      position: absolute;
+      right: 40rpx;
+      top: 40rpx;
+    }
+    .phone-num {
+      display: inline-block;
+      text-align: right;
+      float: right;
+      padding-right: 80rpx;
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="personal">
+        <UserInfo />
+        <view class="navList">
+          <repeat for="{{navList}}" index="index" item="item" key="index">
+            <view class="list-bar" @tap="headleClick({{ item.link }})">
+              <image class="list_icon" src="{{ item.img_icon }}"></image>
+              <view class="item-font">{{ item.title }}</view>
+            </view>
+          </repeat>
+        </view>
+        <view class="feedback-list">
+          <repeat for="{{feedback}}" index="index" item="line" key="index">
+            <view class="list-bar" @tap="bodyClick({{ line.pageUrl }})">
+              <image class="list_icon" src="{{ line.icon }}"></image>
+              <view class="item-font">{{ line.title }}</view>
+              <image class="row_icon" src="../images/chevron-right.svg"></image>
+            </view>
+          </repeat>
+          <view class="list-bar" @tap="phoneCall">
+            <image class="list_icon" src="../images/mine_serve_icon@2x.svg"></image>
+            <view class="item-font">服务热线</view>
+            <view class="phone-num">400-606-3001</view>
+            <image class="row_icon" src="../images/chevron-right.svg"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import UserInfo from '../components/personal_component/userInfo'
+export default class Personal extends wepy.page {
+  config = {
+    navigationBarTitleText: '个人中心'
+  }
+  data = {
+    navList: [
+      {
+        link: '../pages/myidle',
+        img_icon: '../images/mine_myidle_icon@2x.svg',
+        title: '我的闲置'
+      },
+      {
+        link: '../pages/recycleOrder',
+        img_icon: '../images/mine_bills_icon@2x.svg',
+        title: '回收单'
+      },
+      {
+        link: '../pages/myaccount',
+        img_icon: '../images/mine_account_icon@2x.png',
+        title: '我的账户'
+      }
+    ],
+    feedback: [
+      {
+        icon: '../images/mine_back_icon@2x.svg',
+        title: '反馈意见',
+        pageUrl: '../pages/opinion'
+      },
+      {
+        icon: '../images/mine_ques_icon@2x.svg',
+        title: '常见问题',
+        pageUrl: '../pages/problem'
+      },
+      {
+        icon: '../images/mine_us_icon@2x.svg',
+        title: '关于我们',
+        pageUrl: '../pages/aboutUs'
+      }
+    ]
+  }
+
+  components = {
+    UserInfo
+  }
+
+  methods = {
+    headleClick(url) {
+      wepy.navigateTo({
+        url: `${url}`
+      })
+    },
+    bodyClick(url) {
+      wepy.navigateTo({
+        url: `${url}`
+      })
+    },
+    phoneCall() {
+      wepy.makePhoneCall({
+        phoneNumber: '400-606-3001'
+      })
+    }
+  }
+  onLoad() {
+    let self = this
+    wepy.getUserInfo({
+      success: function (params) {
+        console.log(params)
+        if (params.userInfo) {
+          self.$broadcast('set-userInfo', params.userInfo)
+        }
+      }
+    })
+  }
+}
+</script>

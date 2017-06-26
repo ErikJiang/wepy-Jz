@@ -1,0 +1,171 @@
+<style lang="less">
+// 首页残值趋势
+.residualTrend {
+  overflow: hidden;
+  .rt-Box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0c0c0c;
+    padding: 40rpx;
+    .canvas {
+      width: 720rpx;
+      height: 400rpx;
+    }
+    .brandList {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      .brand-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 30rpx;
+        i {
+          width: 16rpx;
+          height: 16rpx;
+          border-radius: 8rpx;
+          margin-right: 10rpx;
+        }
+      }
+      .brand-box:first-child{
+        margin-left: 0rpx;
+      }
+      image {
+        height: 30rpx;
+      }
+      .logo0 {
+        width: 30rpx;
+      }
+      .logo1 {
+        width: 94rpx;
+      }
+      .logo2 {
+        width: 94rpx;
+      }
+      .logo3 {
+        width: 30rpx;
+      }
+      .logo4 {
+        width: 94rpx;
+      }
+    }
+  }
+}
+
+</style>
+<template>
+  <view class="residualTrend">
+    <TitleLink titleTips="残值趋势" link="" rowicon="显示"></TitleLink>
+    <view class="rt-Box">
+      <view class="brandList">
+        <repeat for="{{comList}}" index="index" item="item" key="index">
+          <view class="brand-box">
+            <i style="background-color:{{colorList[index]}}"></i>
+            <image class="logo{{index}}" src="{{ item.logo }}"></image>
+          </view>
+        </repeat>
+      </view>
+      <canvas canvas-id="indexCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+    </view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import TitleLink from './titleLink'
+import WxCharts from '../../../mixins/wxcharts'
+var lineChart = null
+export default class ResidualTrend extends wepy.component {
+  data = {
+    colorList: ['#A9FF63', '#F5CB5F', '#FF5D5D', '#A07EFA', '#CFCFCF'],
+    dataArr: {
+      newDegree: ['全新', '95新', '90新', '85新', '80新', '70新'],
+      brandList: [
+        {
+          logo: 'http://orvkyw2cc.bkt.clouddn.com/logo_chanel.png',
+          per: ['110', '78', '56', '53', '48', '10']
+        },
+        {
+          logo: 'http://orvkyw2cc.bkt.clouddn.com/logo_gucci.png',
+          per: ['100', '58', '46', '53', '88', '20']
+        },
+        {
+          logo: 'http://orvkyw2cc.bkt.clouddn.com/logo_hermes.png',
+          per: ['99', '98', '80', '48', '78', '30']
+        },
+        {
+          logo: 'http://orvkyw2cc.bkt.clouddn.com/logo_LV.png',
+          per: ['111', '88', '76', '93', '68', '40']
+        },
+        {
+          logo: 'http://orvkyw2cc.bkt.clouddn.com/logo_prada.png',
+          per: ['89', '91', '65', '47', '58', '25']
+        }
+      ]
+    }
+  }
+  methods = {
+    touchHandler(e) {
+      // 图标的点击事件  该部分功能正式没有加载项目中    后续的点击事件 可以将数据显示在需要显示的地方   提高交互
+      console.log(lineChart.getCurrentDataIndex(e))
+    }
+  }
+  computed = {
+    comList() {
+      return this.dataArr.brandList
+    }
+  }
+  onLoad() {
+    let self = this
+    let datalist = (e) => {
+      let list = e.brandList.map(function (item, index) {
+        let needData = {
+          color: self.colorList[index],
+          data: item.per
+        }
+        return needData
+      })
+      return list
+    }
+
+    lineChart = new WxCharts({
+      canvasId: 'indexCanvas',
+      type: 'line',           // 图表类型  本项目中使用的是折现图   line   可选类型（pie, line, column, area, ring, radar）
+      animation: false,       // 是否显示加载时的动画
+      dataLabel: false,       // 是否在图标中显示数据内容
+      dataPointShape: false,  // 是否在图表中显示数据点图标标识
+      legend: false,           // 是否显示图表下方各类型的标识
+      disablePieStroke: true,     // 不绘制饼图（圆环图）各区块的白色分割线
+      extra: {
+        lineStyle: 'curve'
+      },
+      categories: this.dataArr.newDegree,
+      series: datalist(this.dataArr),
+      xAxis: {
+        type: 'calibration',
+        disabled: true,
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        min: 0,
+        disableGrid: false
+      },
+      yAxis: {
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        disableGrid: false,
+        min: 0,
+        format: function (val) {
+          return val.toFixed(0) + '%'
+        }
+      },
+      width: 360,
+      height: 210
+    })
+  }
+  components = {
+    TitleLink
+  }
+}
+</script>

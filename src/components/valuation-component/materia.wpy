@@ -1,0 +1,36 @@
+<style lang="less">
+ .valsize{
+   overflow: hidden;
+ }
+</style>
+<template>
+  <view class="valsize">
+    <repeat for="{{listdata}}" index="index" item="item" key="index">
+      <Sizetag :shenfun="item" step="nextstep" datasend="senddata" />
+    </repeat>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import Sizetag from './chil/sizetag'
+export default class Valmateria extends wepy.component {
+  props = {
+    listdata: {},
+    nextstep: {},
+    senddata: {}
+  }
+  components = {
+    Sizetag
+  }
+  events = {
+    'material-ls': (t, n, s) => {
+      if (t) {
+        this.listdata = t
+        this.nextstep = n
+        this.senddata = s
+      }
+    }
+  }
+}
+</script>

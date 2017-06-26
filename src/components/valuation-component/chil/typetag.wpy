@@ -1,0 +1,45 @@
+<style lang="less">
+.typetag {
+  overflow: hidden;
+  width: 160rpx;
+  float: left;
+  margin-left: 20rpx;
+  image {
+    width: 160rpx;
+    height: 160rpx;
+    background-color: #ffffff;
+  }
+  .Valtag-font16 {
+    color: #898989;
+    font-size: 24rpx;
+    padding: 20rpx;
+  }
+}
+</style>
+<template>
+  <view wx:if="shenfun" class="typetag" @tap="valtype({{shenfun.id}}, {{ shenfun.series }}, {{shenfun.typeN}})">
+    <image src="{{ shenfun.typelogo }}"></image>
+    <view class="Valtag-font16">{{shenfun.typeN}}</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Typetag extends wepy.component {
+  props = {
+    tagdata: {}
+  }
+  computed = {
+    shenfun() {
+      return this.tagdata
+    }
+  }
+  methods = {
+    valtype(id, d, n) {
+      this.$emit('sch-num', 3, null, n)
+      this.$parent.$parent.valuation.type = id
+      this.$emit('sype-setdata', id, d)
+    }
+  }
+}
+</script>

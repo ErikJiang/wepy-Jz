@@ -1,0 +1,385 @@
+<style lang="less">
+.valuation {
+  width: 100%;
+  overflow: hidden;
+  .valuation-box {
+    overflow: hidden;
+    .font16 {
+      font-size: 32rpx;
+      color: #898989;
+      text-align: left;
+      padding: 40rpx 0;
+      margin-left: 60rpx;
+    }
+    .defaul,
+    .hotStyle {
+      overflow: hidden;
+    }
+  }
+  .states {
+    text-align: center;
+    width: 100%;
+    height: 114rpx;
+    background-color: #474647;
+    color: #898989;
+    font-size: 30rpx;
+    line-height: 114rpx;
+    .font24 {
+      color: #ffffff;
+      font-size: 64rpx;
+      display: inline-block;
+    }
+    .statename {
+      display: inline-block;
+    }
+  }
+  .barstatus {
+    overflow: hidden;
+    image {
+      display: block;
+    }
+  }
+  .defFont {
+    color: #2f3134;
+    font-size: 38rpx;
+    text-align: left;
+    padding: 60rpx 0;
+    margin-left: 60rpx;
+  }
+  .pronav {
+    color: #2f3134;
+    font-size: 24rpx;
+    text-align: left;
+    padding: 60rpx 0;
+    margin-left: 60rpx;
+    white-space: nowrap;
+    .fontstyle {
+      display: inline-block;
+      padding-right: 20rpx;
+    }
+    .font0 {
+      font-size: 38rpx;
+      padding-right: 20rpx;
+    }
+    .font1 {
+      line-height: 40rpx;
+      padding-left: 20rpx;
+      border-left: 2rpx solid #2f3134;
+    }
+    .font2 {
+      line-height: 26rpx;
+      padding-left: 20rpx;
+      border-left: 2rpx solid #2f3134;
+    }
+    .font3 {
+      line-height: 26rpx;
+      padding-left: 20rpx;
+      border-left: 2rpx solid #2f3134;
+    }
+    .font4 {
+      line-height: 26rpx;
+      padding-left: 20rpx;
+      border-left: 2rpx solid #2f3134;
+    }
+    .font-last {
+      color: #939393;
+      padding-left: 20rpx;
+      line-height: 26rpx;
+      border-left: 2rpx solid #2f3134;
+      padding-right: 20rpx;
+      margin-right: 180rpx;
+      border-right: 2rpx solid #2f3134;
+    }
+  }
+  .fontTip {
+    font-size: 36rpx;
+    color: #2f3134;
+    text-align: center;
+    padding-bottom: 60rpx;
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="valuation" @sch-num="schnum({{ schedule }})">
+        <view class="states">
+          <view class="font24">{{statenum}}</view>/9
+          <view class="statename">{{ imageindex.name }}</view>
+        </view>
+        <view class="barstatus">
+          <image src="{{imageindex.url}}" style="width:{{imageindex.width}}rpx;height:20rpx;"></image>
+        </view>
+        <scroll-view scroll-x="true" wx:if="{{titleTips.length > 0}}" class="pronav">
+          <repeat for="{{titleTips}}" index="index" item="item" key="index">
+            <view class="fontstyle font{{index}}">
+              {{ item }}
+            </view>
+          </repeat>
+          <view wx:if="{{titleTips.length === 5}}" class="fontstyle font-last">
+            {{ titleTips.length === 5 ? '成色': '' }}
+          </view>
+        </scroll-view>
+        <!--类型-->
+        <view wx:if="{{contpages == 2}}" class="valuation-box">
+          <Valtype datalist="datalist"></Valtype>
+        </view>
+        <!--系列-->
+        <view wx:if="{{contpages == 3}}" class="valuation-box">
+          <Valseries dataseries="dataseries" />
+        </view>
+        <!--大小-->
+        <view wx:if="{{contpages == 4}}" class="valuation-box">
+          <Valsize datasize="datasize" />
+        </view>
+        <!--材质-->
+        <view wx:if="{{contpages == 5}}" class="valuation-box">
+          <Valmateria datamateria="datamateria" />
+        </view>
+        <!--成色1-->
+        <view wx:if="{{contpages == 6}}" class="valuation-box">
+          <Valcondition datacondition="datacondition" />
+        </view>
+        <!--成色2-->
+        <view wx:if="{{contpages == 7}}" class="valuation-box">
+          <Valcond1 datacondq="datacondq" />
+        </view>
+        <!--成色3-->
+        <view wx:if="{{contpages == 8}}" class="valuation-box">
+          <Valcond2 datacondw="datacondw" />
+        </view>
+        <!--成色4-->
+        <view wx:if="{{contpages == 9}}" class="valuation-box">
+          <Valcond3 dataconde="dataconde" />
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Valbrand from '../components/valuation-component/brand'
+import Valtype from '../components/valuation-component/type'
+import Valseries from '../components/valuation-component/series'
+import Valsize from '../components/valuation-component/size'
+import Valmateria from '../components/valuation-component/materia'
+import Valcondition from '../components/valuation-component/condition'
+import Valcond1 from '../components/valuation-component/cond1'
+import Valcond2 from '../components/valuation-component/cond2'
+import Valcond3 from '../components/valuation-component/cond3'
+export default class Valuation extends wepy.page {
+  config = {
+    navigationBarTitleText: '估价'
+  }
+  data = {
+    proList: '',
+    serieslist: '',
+    sizelist: '',
+    materiallist: '',
+    conditionlist: '',
+    cond1list: '',
+    cond2list: '',
+    cond3list: '',      // 以上是对应数据
+    titleTips: [],      // 内容头部提示
+    schedule: 2,
+    valuation: {
+      brand: '',
+      type: '',
+      series: '',
+      size: '',
+      material: '',
+      condition: {
+        default: '',
+        appearance: [],
+        hardware: [],
+        lining: []
+      }
+    },
+    imgrArr: [
+      {
+        url: '../images/val_bar-2@2x.svg',
+        width: '180',
+        name: '类型'
+      },
+      {
+        url: '../images/val_bar-3@2x.svg',
+        width: '270',
+        name: '系列'
+      },
+      {
+        url: '../images/val_bar-4@2x.svg',
+        width: '360',
+        name: '大小'
+      },
+      {
+        url: '../images/val_bar-5@2x.svg',
+        width: '450',
+        name: '材质'
+      },
+      {
+        url: '../images/val_bar-6@2x.svg',
+        width: '540',
+        name: '成色'
+      },
+      {
+        url: '../images/val_bar-7@2x.svg',
+        width: '600',
+        name: '成色'
+      },
+      {
+        url: '../images/val_bar-8@2x.svg',
+        width: '600',
+        name: '成色'
+      },
+      {
+        url: '../images/val_bar-9@2x.svg',
+        width: '690',
+        name: '成色'
+      }
+    ]
+  }
+  methods = {
+    schnum(i) {
+      console.log(i)
+    }
+  }
+  computed = {
+    datalist() {
+      if (this.proList) {
+        this.$broadcast('prodata-ls', this.proList)
+      }
+    },
+    dataseries() {
+      if (this.serieslist) {
+        this.$broadcast('series-ls', this.serieslist)
+      }
+    },
+    datasize() {
+      if (this.sizelist) {
+        this.$broadcast('size-ls', this.sizelist, 5, 'size-setdata')
+      }
+    },
+    datamateria() {
+      if (this.materiallist) {
+        this.$broadcast('material-ls', this.materiallist, 6, 'material-setdata')
+      }
+    },
+    datacondition() {
+      if (this.conditionlist) {
+        this.$broadcast('condition-ls', this.conditionlist, 7, 'condition-setdata')
+      }
+    },
+    datacondq() {
+      if (this.cond1list) {
+        this.$broadcast('cond1-ls', this.cond1list, 8, 'cond1-setdata')
+      }
+    },
+    datacondw() {
+      if (this.cond2list) {
+        this.$broadcast('cond2-ls', this.cond2list, 9, 'cond2-setdata')
+      }
+    },
+    dataconde() {
+      if (this.cond3list) {
+        this.$broadcast('cond3-ls', this.cond3list, 10, 'cond3-setdata')
+      }
+    },
+    statenum() {
+      return this.schedule
+    },
+    imageindex() {
+      return this.imgrArr[this.schedule - 2]
+    },
+    contpages() {
+      return this.schedule
+    },
+    valtype() {
+      return this.proList
+    },
+    getStates() {
+      let states = wepy.getStorageSync('state')
+      if (states) {
+        this.schedule = states
+      }
+    }
+  }
+  events = {
+    // 监听状态是否发生变化》》切换选项内容
+    'sch-num': (d, t, n) => {
+      this.schedule = d
+      if (t) {
+        this.proList = t
+      }
+      if (typeof n === 'string') {
+        this.titleTips.push(n)
+      }
+    },
+    // 成色部分的选择状态
+    'chengse-num': (d, t, n) => {
+      this.schedule = d
+      if (t) {
+        this.proList = t
+      }
+    },
+    // 类型数据以及类型选项
+    'sype-setdata': (id, getdata) => {
+      this.valuation.type = id
+      this.serieslist = getdata
+    },
+    // 系列数据以及系列选项
+    'series-setdata': (id, getdata) => {
+      this.valuation.series = id
+      this.sizelist = getdata
+    },
+    // 大小数据以及大小选项
+    'size-setdata': (id, getdata) => {
+      this.valuation.size = id
+      this.materiallist = getdata.material
+    },
+    // 材质数据以及材质选项
+    'material-setdata': (id, getdata) => {
+      this.valuation.material = id
+      this.conditionlist = getdata.condition
+    },
+    // 成色1数据以及材质选项
+    'condition-setdata': (id, getdata) => {
+      this.valuation.condition.default = id
+      this.cond1list = getdata.cond1
+    },
+    // 成色2数据以及材质选项
+    'cond1-setdata': (id, getdata) => {
+      this.valuation.condition.appearance = id
+      this.cond2list = getdata.cond2
+    },
+    // 成色3数据以及材质选项
+    'cond2-setdata': (id, getdata) => {
+      this.valuation.condition.hardware = id
+      this.cond3list = getdata.cond3
+    },
+    // 成色4数据以及材质选项
+    'cond3-setdata': (id, getdata) => {
+      this.valuation.condition.lining = id
+    }
+  }
+  onLoad(e) {
+    this.titleTips = []
+    let value = wepy.getStorageSync('postList')
+    this.proList = value.list
+    this.schedule = value.state
+    this.titleTips.push(e.brand)
+    this.valuation.brand = e.id
+  }
+  components = {
+    Valbrand,
+    Valtype,
+    Valseries,
+    Valsize,
+    Valmateria,
+    Valcondition,
+    Valcond1,
+    Valcond2,
+    Valcond3
+  }
+}
+</script>

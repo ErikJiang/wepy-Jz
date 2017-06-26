@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>val_lv_icon_2@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="估价2-copy" transform="translate(-203.000000, -417.000000)">
+            <g id="Group-4" transform="translate(261.000000, 477.000000)" stroke="#979797" stroke-width="2">
+                <rect id="Rectangle" x="0" y="0" width="5" height="8" rx="2.5"></rect>
+                <rect id="Rectangle-Copy" x="36" y="0" width="5" height="8" rx="2.5"></rect>
+            </g>
+            <path d="M242,463 L248.020614,468.268037" id="Line" stroke="#474647" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M303.181971,468.5 L312.926661,468.5 C315.31309,468.5 316.845285,470.314927 316.444031,472.658879 L308.71047,517.834923 C308.274563,520.3813 305.764397,522.5 303.181971,522.5 L260.373109,522.5 C257.777126,522.5 255.179231,520.369523 254.667263,517.819432 L245.586796,472.590057 C245.349768,471.409429 245.606013,470.361691 246.250324,469.616806 C246.861201,468.910573 247.800828,468.5 248.943749,468.5 L260.373109,468.5 L303.181971,468.5 Z" id="Rectangle-9" stroke="#474647" stroke-width="3"></path>
+            <path d="M264,478.581512 C264,478.581512 268.630064,446 282.325132,446 C296.020199,446 299.925438,476.644656 299.925438,476.644656" id="Line-Copy" stroke="#474647" stroke-width="2"></path>
+            <path d="M260,517 L304,517" id="Line" stroke="#979797" stroke-width="2" stroke-linecap="round"></path>
+        </g>
+    </g>
+</svg>

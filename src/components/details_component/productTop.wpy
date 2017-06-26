@@ -1,0 +1,85 @@
+<style lang="less">
+.proTop {
+  background-color: #ffffff;
+  overflow: hidden;
+  padding-left: 40rpx;
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
+  .pro-img {
+    border: 2px solid #f1f1f1;
+    width: 225rpx;
+    height: 206rpx;
+    padding: 14rpx;
+    float: left;
+  }
+  .info-right {
+    float: left;
+    padding-left: 10rpx;
+  }
+  .namefont{
+    font-size: 18px;
+  }
+  .proname {
+    margin-top: 32rpx;
+    .span {
+      display: inline-block;
+      font-weight: 100;
+      margin-left: 4rpx;
+      margin-bottom: 6rpx;
+      font-size: 12px;
+      padding: 1px 2px;
+      border: 1px solid #2f3134;
+      border-radius: 5px;
+      text-align: center;
+      color: #2f3134;
+    }
+  }
+  .font13 {
+    font-size: 13px;
+    color: #898989;
+    text-align: left;
+  }
+  .mony {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fd5842;
+    display: inline-block;
+  }
+  .mony::before {
+    content: "¥";
+    font-weight: 100px;
+    font-size: 12px;
+    margin-right: 2px;
+  }
+  .last {
+    margin-top: 24rpx;
+  }
+}
+</style>
+<template>
+  <view class="proTop">
+    <image class="pro-img" src="{{getdata.imgurl}}"></image>
+    <view class="info-right">
+      <view class="proname namefont">{{ getdata.model }}</view>
+      <view wx:if="getdata.newDegree" class="proname font13">品级：
+        <view class="span">
+          {{ getdata.newDegree }}
+        </view>
+      </view>
+      <view class="proname font13 last">回收价：
+        <view class="mony">{{ getdata.recPrice }}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class ProductTop extends wepy.component {
+  computed = {
+    getdata() {
+      return this.$parent.setdata
+    }
+  }
+}
+</script>

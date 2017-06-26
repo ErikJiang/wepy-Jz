@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="540px" height="16px" viewBox="0 0 540 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>val_bar-6@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="3.43848645%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FA8313" offset="0%"></stop>
+            <stop stop-color="#FAB213" offset="45.5326551%"></stop>
+            <stop stop-color="#F8C200" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M0,0 L532.000376,0 C536.418446,0 540,3.59071231 540,8 L540,8 C540,12.418278 536.408904,16 532.000376,16 L0,16 L0,0 Z" id="Rectangle-27-Copy-2" fill="url(#linearGradient-1)"></path>
+    </g>
+</svg>

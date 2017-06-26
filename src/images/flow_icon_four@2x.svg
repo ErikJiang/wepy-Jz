@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="123px" height="122px" viewBox="0 0 123 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>flow_icon_four@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="58.5" cy="58.5" rx="58.5" ry="58.5"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-5-Copy-4" fill="#FFFFFF" x="-589" y="-25" width="750" height="204"></rect>
+        <g id="Group-4-Copy" transform="translate(3.000000, 2.000000)">
+            <g id="Oval-6-Copy-3">
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <ellipse stroke="#DCDCDC" stroke-width="1" cx="58.5" cy="58.5" rx="58" ry="58"></ellipse>
+            </g>
+            <g id="Group-2" transform="translate(37.000000, 44.000000)" stroke="#474647" stroke-width="3" stroke-linecap="round">
+                <path d="M0.236948232,13.5461059 L15.5879898,28.927741" id="Line-Copy-7"></path>
+                <path d="M16.2105263,0.455518795 L43.6799792,28.1184772" id="Line-Copy-9" transform="translate(29.945253, 14.286998) scale(-1, 1) translate(-29.945253, -14.286998) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

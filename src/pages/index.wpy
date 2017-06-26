@@ -1,0 +1,38 @@
+<style lang="less">
+  .srollBox{
+    overflow: hidden;
+    position:absolute;
+    .container{
+      background-color: #f7f7f7;
+    }
+  }
+  
+   .container{
+     font-family:"Microsoft Yahei";
+   } 
+  
+</style>
+<template>
+<scroll-view scroll-y="true" class="srollBox">
+  <view class="container">   
+    <banner></banner>
+    <content></content>
+  </view>
+</scroll-view>  
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Indexbanner from '../components/index_component/indexbanner'
+  import Indexcontent from '../components/index_component/indexcontent'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '简值奢侈品回收'
+    }
+
+    components = {
+      banner: Indexbanner,
+      content: Indexcontent
+    }
+  }
+</script>

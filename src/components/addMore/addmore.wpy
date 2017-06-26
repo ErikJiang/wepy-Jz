@@ -1,0 +1,36 @@
+<style lang="less">
+.addmore {
+  margin-bottom: 40rpx;
+  .more {
+    font-size: 26rpx;
+    color: #c2c1c1;
+  }
+}
+</style>
+<template>
+  <view class="addmore">
+    <view class="more">
+      {{ tips }}
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Addmore extends wepy.page {
+  props = {
+    nexturl: {}
+  }
+
+  data = {
+    toastTip: '已经到底啦~'
+  }
+
+  computed = {
+    tips() {
+      return this.toastTip
+    }
+  }
+  // 注释说明：这里写请求 更具传过来的参数经行对应的请求   改变提示状态
+}
+</script>

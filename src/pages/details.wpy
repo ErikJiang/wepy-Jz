@@ -1,0 +1,113 @@
+<style lang="less">
+.details {
+  width: 100%;
+  overflow: hidden;
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="details">
+        <ProductTop detailsTop="setdata"></ProductTop>
+        <Survey survey="surveydata"></Survey>
+        <Exterior exterior="exteriordata"></Exterior>
+        <PriceTrend trend="trendlist"></PriceTrend>
+        <Othershops otherlist="otherdata"></Othershops>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import ProductTop from '../components/details_component/productTop'
+import Survey from '../components/details_component/survey'
+import Exterior from '../components/details_component/exterior'
+import PriceTrend from '../components/details_component/priceTrend'
+import Othershops from '../components/details_component/othershops'
+export default class Details extends wepy.page {
+  config = {
+    navigationBarTitleText: '回收详情'
+  }
+  data = {
+    list: {
+      id: 1,
+      topinfo: {
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        closingTime: '2016-6-24',
+        recPrice: '7500',
+        newDegree: '95新'
+      },
+      survey: {
+        basicinfo: ['GUCCI  古奇咖色 大号 手提包，PVC 花卉刺绣', '配件包括：防尘袋、身份卡、包装袋、发票'],
+        harminfo: ['提手磨损', '外底有正常使用痕迹（细微划痕）', '包内底有污渍', '暗袋一侧外表面有3公分浅表划痕']
+      },
+      exterior: [
+        'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s2.jpg',
+        'http://img.91sph.com/goods//20170406//b47ca950-bc6d-4bc7-be36-67c4e4dcf4b9_s2.jpg',
+        'http://img.91sph.com/goods//20170406//94409766-ec04-4f65-9634-a739b2d5f92d_s2.jpg',
+        'http://img.91sph.com/goods//20170406//244b577a-1068-4da6-8fa4-df1b88cefecb_s2.jpg',
+        'http://img.91sph.com/goods//20170406//9fdffa2a-4cb2-4b62-b7d9-c38c9e7223d8_s2.jpg'
+      ],
+      other: {
+        shopName: 'Dior',
+        item: [
+          {
+            id: 3,
+            imgurl: 'http://img.91sph.com/goods//20170522//599b7815-b29a-416e-891f-01bf428a0403_s1.jpg',
+            brand: 'Dior',
+            model: 'Dior双肩包',
+            closingTime: '2017-5-24',
+            recPrice: '40500',
+            newDegree: '95新'
+          },
+          {
+            id: 4,
+            imgurl: 'http://img.91sph.com/goods//20170311//aa0c7cd2-4b21-4ad2-868f-216a8e3bcea4_s1.jpg',
+            brand: 'Dior',
+            model: 'Dior香奈儿单肩包',
+            closingTime: '2017-3-18',
+            recPrice: '9199',
+            newDegree: '95新'
+          }
+        ]
+      },
+      trend: {
+        daraJz: ['4821', '4423', '3234', '2132'],
+        daraHt: ['3232', '2243', '1124', '1012'],
+        daraXp: ['2166', '2363', '2523', '2132'],
+        DateArr: ['04-05', '04-10', '04-15', '04-20']
+      }
+    }
+  }
+  computed = {
+    setdata() {
+      return this.list.topinfo
+    },
+    surveydata() {
+      return this.list.survey
+    },
+    exteriordata() {
+      return this.list.exterior
+    },
+    otherdata() {
+      return this.list.other
+    },
+    trendlist() {
+      return this.list.trend
+    }
+  }
+  components = {
+    ProductTop,
+    Survey,
+    Exterior,
+    PriceTrend,
+    Othershops
+  }
+  onLoad(option) {
+    console.log(option.id)
+  }
+}
+</script>

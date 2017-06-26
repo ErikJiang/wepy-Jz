@@ -1,0 +1,182 @@
+<style lang="less">
+.myaccount {
+  width: 100%;
+  overflow: hidden;
+  .myaccount-box {
+    background-color: #474647;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .list_icon {
+      width: 400rpx;
+      height: 30rpx;
+      margin: 70rpx 0rpx;
+    }
+    .myaccount-pice {
+      font-size: 84rpx;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 120rpx;
+    }
+  }
+  .myaccount-content {
+    overflow: hidden;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,0.05);
+    margin-bottom: 120rpx;
+  }
+  .shops-box {
+    overflow: hidden;
+    background-color: #ffffff;
+    padding: 0 20rpx;
+    margin-top: 8rpx;
+    .shops-title {
+      overflow: hidden;
+      padding: 26rpx 0rpx;
+      border-bottom: 2rpx solid #f1f1f1;
+      .left {
+        font-size: 30rpx;
+        color: #474647;
+        float: left;
+        padding-left: 20rpx;
+        border-left: 8rpx solid #1d1d1b;
+      }
+      .right {
+        font-size: 30rpx;
+        color: #a6a6a6;
+        float: right;
+      }
+    }
+    .goods {
+      padding: 44rpx 0rpx;
+      overflow: hidden;
+      .goods-info {
+        font-size: 24rpx;
+        padding-bottom: 24rpx;
+        .font18 {
+          font-size: 36rpx;
+        }
+        .font16 {
+          font-size: 28rpx;
+        }
+      }
+      .goods-box {
+        overflow: hidden;
+        padding-left: 20rpx;
+        height: 210rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .goods-img {
+        width: 230rpx;
+        height: 210rpx;
+        padding: 8rpx;
+        border: 2px solid #f1f1f1;
+        float: left;
+      }
+      .test {
+        font-size: 36rpx;
+        color: #1d1d1b;
+      }
+      .tag {
+        font-size: 28rpx;
+        color: #2f3134;
+      }
+      .condition {
+        padding-top: 18rpx;
+        font-size: 28rpx;
+        color: #898989;
+        overflow: hidden;
+        .fontcustur {
+          float: left;
+        }
+        .conditionname {
+          float: left;
+        }
+      }
+      .condition:last-child {
+        padding-top: 12rpx;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="myaccount">
+        <view class="myaccount-box">
+          <image class="list_icon" src="../images/zongzichan_icon_2@2x.svg"></image>
+          <view class="myaccount-pice">1,842.90</view>
+        </view>
+        <view class="myaccount-content">
+          <repeat for="{{shopsList}}" index="index" item="item" key="index">
+            <view class="shops-box">
+              <view class="shops-title">
+                <view class="left">回收订单号：{{ item.orderNum }}</view>
+                <view class="right">{{ item.state }}</view>
+              </view>
+              <view class="goods">
+                <image src="{{item.imgurl}}" class="goods-img"></image>
+                <view class="goods-box">
+                  <view class="goods-info">
+                    <text class="font18">{{ item.brand }}</text> |
+                    <text class="font16">{{ item.model }}</text> |
+                    <text class="font16">{{ item.size }}</text>
+                  </view>
+                  <view class="condition">
+                    <view class="fontcustur">回收金额：</view>
+                    <view class="conditionname">{{ item.money }}</view>
+                  </view>
+                  <view class="condition">
+                    <view class="fontcustur">完成时间：</view>
+                    <view class="conditionname">{{ item.finishTime }}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </repeat>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Myaccount extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的账户'
+  }
+  data = {
+    shopsList: [
+      {
+        id: 3213,
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        size: '大号',
+        money: '2344',
+        finishTime: '2017-06-21',
+        state: '已完成',
+        orderNum: '097897'
+      },
+      {
+        id: 9520,
+        imgurl: 'http://img.91sph.com/goods//20170509//9fdf03bd-63b2-4d63-9703-90ea81eda0d2_s1.jpg',
+        brand: 'Louis Vuitton',
+        model: 'LV路易手提包',
+        size: '中号',
+        money: '7200',
+        finishTime: '2017-08-08',
+        state: '未完成',
+        orderNum: '1231234'
+      }
+    ]
+  }
+  components = {
+  }
+}
+</script>

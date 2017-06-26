@@ -1,0 +1,74 @@
+<style lang="less">
+.myidle {
+  width: 100%;
+  overflow: hidden;
+  .myidle-box{
+    overflow: hidden;
+    margin-top: 16rpx;
+    .recoverPage{
+      background-color: #ffffff;
+      color:#474647;
+      font-size: 30rpx;
+      text-align: right;
+      padding: 24rpx 50rpx;
+      margin-bottom: 4rpx;
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="myidle">
+        <repeat for="{{idleList}}" index="index" item="item" key="index">
+          <view class="myidle-box">
+            <view class="recoverPage" @tap="register({{ item.id }})">预约回收</view>
+            <RecoverGoods :dataItem="item"></RecoverGoods>
+          </view>
+        </repeat>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import RecoverGoods from '../components/recoverGoods/recoverGoods'
+export default class Myidle extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的闲置'
+  }
+  data = {
+    idleList: [
+      {
+        id: 3211,
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        size: '大号',
+        parts: '发票、身份卡、防尘袋成色',
+        condition: '五金件正常使用痕迹外表面明显瑕疵'
+      },
+      {
+        id: 32423,
+        imgurl: 'http://img.91sph.com/goods//20170311//aa0c7cd2-4b21-4ad2-868f-216a8e3bcea4_s1.jpg',
+        brand: 'CHANEL',
+        model: 'CHANEL香奈儿单肩包',
+        size: '大号',
+        parts: '发票、身份卡、防尘袋成色',
+        condition: '五金件正常使用痕迹外表面明显瑕疵五金件正常使用痕迹外表面明显瑕疵五金件正常使用痕迹外表面明显瑕疵'
+      }
+    ]
+  }
+  methods = {
+    register(id) {
+      wepy.navigateTo({
+        url: `../pages/register?id=${id}`
+      })
+    }
+  }
+  components = {
+    RecoverGoods
+  }
+}
+</script>

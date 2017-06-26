@@ -1,0 +1,61 @@
+<style lang="less">
+.valsize {
+  overflow: hidden;
+  .mulselect {
+    overflow: hidden;
+    float: left;
+    margin-left: 40rpx;
+    image {
+      width: 200rpx;
+      height: 200rpx;
+      background-color: #ffffff;
+    }
+    .active {
+      border: 2rpx solid #f8c300;
+    }
+    .Valtag-font16 {
+      color: #898989;
+      font-size: 24rpx;
+      padding: 20rpx 0;
+      text-align: center;
+    }
+  }
+}
+</style>
+<template>
+  <view class="valsize">
+    <repeat for="{{listdata}}" index="index" item="item" key="index">
+      <view wx:if="item" class="mulselect" @tap="valtype({{item.id}}, {{nextstep}}, {{item}}, {{ senddata }})">
+        <image src="{{ item.logo }}"></image>
+        <view class="Valtag-font16">{{item.name}}</view>
+      </view>
+    </repeat>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Valcondition extends wepy.component {
+  props = {
+    listdata: {},
+    nextstep: {},
+    senddata: {}
+  }
+
+  methods = {
+    valtype(id, step, d, s) {
+      this.$emit('chengse-num', step, null)
+      this.$emit(s, id, d)
+    }
+  }
+  events = {
+    'condition-ls': (t, n, s) => {
+      if (t) {
+        this.listdata = t
+        this.nextstep = n
+        this.senddata = s
+      }
+    }
+  }
+}
+</script>

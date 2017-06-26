@@ -1,0 +1,32 @@
+<style lang="less">
+  .feedList{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    .feedListbox:first-child{
+      margin-right: 0rpx;
+    }
+  }
+  
+</style>
+<template>
+  <view wx:if="{{ feedlist }}" class="feedList">
+    <repeat for="{{feedlist}}" index="index" item="item" key="index">
+       <Liststyle :listdata="item"></Liststyle>
+    </repeat>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Liststyle from '../../list_component/liststyle'
+export default class List extends wepy.component {
+  props = {
+    feedlist: {}
+  }
+
+  components = {
+    Liststyle
+  }
+}
+</script>

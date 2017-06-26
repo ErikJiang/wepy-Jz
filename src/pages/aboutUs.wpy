@@ -1,0 +1,58 @@
+<style lang="less">
+.aboutUs {
+  width: 100%;
+  overflow: hidden;
+  .top-img {
+    width: 100%;
+    height: 390rpx;
+  }
+  .aboutUs-info {
+    padding: 0rpx 40rpx;
+    font-size: 28rpx;
+    color: #a6a6a6;
+    line-height: 44rpx;
+    text-align: left;
+    padding-top: 110rpx;
+  }
+  .addess-info {
+    padding: 110rpx 40rpx;
+    .info-font {
+      font-size: 28rpx;
+      color: #1d1d1b;
+      line-height: 44rpx;
+      .space {
+        width: 48rpx;
+        height: 20rpx;
+        display: inline-block;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="aboutUs">
+        <image class="top-img" src="http://orvkyw2cc.bkt.clouddn.com/aboutus_img.jpg"></image>
+        <view class="aboutUs-info">简值隶属于上海更简网络科技有限公司，总部位于上 海 ，成立于2017年，公司成立即获得国内知名回收平 台爱回收数百万战略投资，与全渠道资源支持。并与京 东、返利网、什么值得买等流量巨头达成战略合作。
+        </view>
+        <view class="aboutUs-info">作为国内领先的O2O+C2B的闲置奢侈品回收竞价交 易平台，简值科技为用户的闲置奢侈品（箱包、腕表、 配饰、首饰）提供免费的上门回收 、质检服务，同时 平台拥有全国数千商家参拍竞价 ，帮用户把闲置奢侈 品卖给出价最高的人。
+        </view>
+        <view class="addess-info">
+          <view class="info-font">服务热线：400-606-3001</view>
+          <view class="info-font">地
+            <i class="space"></i>址：上海市杨浦区军工路1599号1幢5层</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class AboutUs extends wepy.page {
+  config = {
+    navigationBarTitleText: '常见问题'
+  }
+}
+</script>

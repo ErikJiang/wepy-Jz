@@ -1,0 +1,66 @@
+<style lang="less">
+.survey {
+  width: 100%;
+  margin-top: 10rpx;
+  background-color: #ffffff;
+  .font18{
+    font-size: 36rpx;
+    padding-bottom: 30rpx;
+  }
+  .font16{
+    font-size:32rpx;
+    color:#898989;
+    text-align:left;
+    line-height: 52rpx;
+  }
+  .basicinfo{
+    padding: 32rpx 20rpx;
+    margin: 0 20rpx; 
+    border-bottom:1px solid #f1f1f1;
+  }
+  .harminfo{
+    padding: 32rpx 20rpx;
+    margin: 0 20rpx; 
+  }
+}
+</style>
+<template>
+  <view class="survey">
+    <Titlelist titletips="概况" />
+    <view class="survey-box">
+      <view class="basicinfo">
+        <view class="basic font18">{{ basic }}</view>
+        <repeat for="{{getdata.basicinfo}}" index="index" item="item" key="index">
+          <view class="font16">· {{item}}</view>
+        </repeat>
+      </view>
+      <view class="harminfo">
+        <view class="harm font18">{{ harm }}</view>
+        <repeat for="{{getdata.harminfo}}" index="index" item="item" key="index">
+          <view class="font16">· {{item}}</view>
+        </repeat>        
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Titlelist from './titlelist'
+
+export default class Survey extends wepy.component {
+  data = {
+    basic: '基本信息—',
+    harm: '损伤信息—'
+  }
+  computed = {
+    getdata() {
+      return this.$parent.surveydata
+    }
+  }
+
+  components = {
+    Titlelist
+  }
+}
+</script>

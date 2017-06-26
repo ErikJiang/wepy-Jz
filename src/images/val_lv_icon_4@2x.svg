@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>val_lv_icon_4@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="估价2-copy" transform="translate(-571.000000, -417.000000)">
+            <polyline id="Line" stroke="#979797" stroke-width="2" stroke-linecap="square" points="622 496 655.5 507.684246 689.007462 496"></polyline>
+            <ellipse id="Oval-3" stroke="#979797" stroke-width="2" cx="656" cy="500" rx="3" ry="3"></ellipse>
+            <rect id="Rectangle-15" stroke="#474647" stroke-width="3" x="620.5" y="475.5" width="71" height="45" rx="6"></rect>
+            <path d="M691.278229,519.817603 C691.278229,523.134839 688.600813,525.82399 685.285181,525.82399 L624.315135,527.110614 C622.649579,527.110614 582.076097,527.862591 580.07414,522.788556 C578.072182,517.714521 617.278229,521.468363 617.278229,519.817603 L617.278229,483.830376 C617.278229,481.850398 618.232088,480.094182 619.706183,479" id="Rectangle-15-Copy" stroke="#898989" stroke-width="2" stroke-linejoin="round" stroke-dasharray="3"></path>
+        </g>
+    </g>
+</svg>

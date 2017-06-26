@@ -1,0 +1,67 @@
+ 
+<style lang="less">
+// 首页常见问题
+.comproblem{
+  margin-bottom: 18rpx;
+  .comproblem-box{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+}
+</style>
+<template>
+  <view class="comproblem">
+    <TitleLink titleTips="常见问题" link="" rowicon="隐藏"></TitleLink>
+    <view class="comproblem-box">
+      <repeat for="{{datalist}}" index="index" item="item" key="key">
+        <ProblemBox :datalist="item"></ProblemBox>
+      </repeat>
+    </view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import TitleLink from './titleLink'
+import ProblemBox from './problemBox'
+export default class Comproblem extends wepy.component {
+  data = {
+    datalist: [
+      {
+        imgurl: '../../../images/que_icon_one@1x.svg',
+        link: '',
+        title1: '如何保证高价？',
+        title2: '全国2000商家竞价',
+        title3: '价高者得'
+      },
+      {
+        imgurl: '../../../images/que_icon_two@1x.svg',
+        link: '',
+        title1: '多久成交？',
+        title2: '上门质检，实时出价',
+        title3: '最快20分钟'
+      },
+      {
+        imgurl: '../../../images/que_icon_thr@1x.svg',
+        link: '',
+        title1: '报价不理想？',
+        title2: '可二次拍卖',
+        title3: '找到更高价格'
+      },
+      {
+        imgurl: '../../../images/que_icon_four@1x.svg',
+        link: '',
+        title1: '是否收费？',
+        title2: '整个服务过程完全免费',
+        title3: '并严格保护用户隐私'
+      }
+    ]
+  }
+
+  components = {
+    TitleLink,
+    ProblemBox
+  }
+}
+</script>

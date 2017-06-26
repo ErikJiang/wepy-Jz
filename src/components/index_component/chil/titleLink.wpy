@@ -1,0 +1,58 @@
+<style lang="less">
+.titleLink {
+  width: 100%;
+  background-color: #fff;
+  height: 100rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .title-tip {
+    line-height: 32rpx;
+    font-weight: 600;
+    font-size: 32rpx;
+    color: #474647;
+    letter-spacing: 0.77px;
+    text-align: left;
+    margin-left: 30px;
+    padding-left: 24px;
+    border-left: 8rpx solid #f8c200;
+  }
+  .row-right {
+    height: 100rpx;
+    width: 80rpx;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+}
+</style>
+<template>
+  <navigator class="titleLink" url="{{ link }}">
+    <view class="title-tip">{{ showTips }}</view>
+    <image wx:if="{{showicon != '隐藏'}}" class="row-right" src="../images/new_icon_next.svg"></image>
+  </navigator>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class TitleLink extends wepy.component {
+  props = {
+    titleTips: {},
+    link: {},
+    rowicon: {}
+  }
+
+  computed = {
+    showicon () {
+      return this.rowicon
+    },
+    showTips () {
+      return this.titleTips
+    }
+
+  }
+}
+</script>

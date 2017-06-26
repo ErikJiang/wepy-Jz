@@ -1,0 +1,130 @@
+<style lang="less">
+.banner {
+  overflow: hidden;
+  .bannerimg {
+    width: 750rpx;
+    height: 414rpx;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .nowNum {
+    margin: 40px auto;
+    overflow: hidden;
+    .succedpels,
+    .succedbags {
+      display: block;
+      text-align: center;
+      color: #b4b4b4;
+      line-height: 58rpx;
+    }
+    .succedpels span {
+      font-weight: 600;
+      color: #33383e;
+    }
+    .succedbags span {
+      font-size: 50rpx;
+      font-weight: 600;
+      color: #33383e;
+    }
+    .toValuation {
+      display: block;
+      background-color: #f8c300;
+      border-radius: 20rpx;
+      width: 670rpx;
+      height: 82rpx;
+      margin: 0px auto;
+      text-align: center;
+      font-size: 42rpx;
+      font-weight: 500;
+      letter-spacing: 3rpx;
+      line-height: 82rpx;
+      color: #ffffff;
+      margin-top: 40rpx;
+    }
+  }
+  .process {
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 44rpx 0;
+    .process_item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-right: 56rpx;
+      position: relative;
+      .serviceIcon {
+        width: 118rpx;
+        height: 118rpx;
+        margin: 0px auto;
+      }
+      .pfont {
+        font-size: 30rpx;
+      }
+      .line {
+        width: 27rpx;
+        height: 16rpx;
+        position: absolute;
+        right: 8px;
+        top: 28px;
+        z-index: 2;
+      }
+    }
+    .process_item:last-child {
+      padding-right: 0rpx;
+    }
+  }
+}
+</style>
+<template>
+  <view class="banner">
+    <image src="http://orvkyw2cc.bkt.clouddn.com/banner_pic.png" class="bannerimg" />
+    <view class="nowNum">
+      <p class="succedpels">简值平台已成功为
+        <span>{{ pels }}</span> 名顾客</p>
+      <p class="succedbags">回收拍卖
+        <span>{{ bags }}</span> 件闲置包包</p>
+      <navigator url="./valFist" class="toValuation" >马上估值</navigator >
+    </view>
+    <view class="process">
+      <view class="process_item" wx:for="{{process}}" wx:for-index="index" wx:for-item="item" wx:key="item.img">
+        <image class="serviceIcon" src="{{ item.img }}"></image>
+        <p class="pfont">{{item.title}}</p>
+        <image wx:if="{{item.showline=='true'}}" class="line" src="../../images/flow_icon@2x.svg"></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Indexbanner extends wepy.component {
+  data = {
+    pels: '12600',
+    bags: '31500',
+    process: [
+      {
+        img: '../../images/flow_icon_one@2x.svg',
+        title: '在线评估',
+        showline: 'true'
+      },
+      {
+        img: '../../images/flow_icon_two@2x.svg',
+        title: '预约上门',
+        showline: 'true'
+      },
+      {
+        img: '../../images/flow_icon_thr@2x.svg',
+        title: '实时竞拍',
+        showline: 'true'
+      },
+      {
+        img: '../../images/flow_icon_four@2x.svg',
+        title: '实时付款',
+        showline: 'false'
+      }
+    ]
+  }
+}
+</script>

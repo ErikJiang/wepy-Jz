@@ -1,0 +1,328 @@
+<style lang="less">
+.evaluate {
+  overflow: hidden;
+  width: 100%;
+  .shop-box {
+    overflow: hidden;
+    padding: 60rpx 20rpx;
+    background-color: #ffffff;
+    .goods {
+      padding: 44rpx 0rpx;
+      overflow: hidden;
+      .goods-info {
+        font-size: 24rpx;
+        padding-bottom: 24rpx;
+        .font18 {
+          font-size: 36rpx;
+        }
+        .font16 {
+          font-size: 28rpx;
+        }
+      }
+      .goods-box {
+        overflow: hidden;
+        padding-left: 20rpx;
+        height: 210rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .goods-img {
+        width: 160rpx;
+        height: 160rpx;
+        padding: 8rpx;
+        border: 2px solid #f1f1f1;
+        float: left;
+      }
+      .test {
+        font-size: 36rpx;
+        color: #1d1d1b;
+      }
+      .tag {
+        font-size: 28rpx;
+        color: #2f3134;
+      }
+      .condition {
+        padding-top: 18rpx;
+        font-size: 28rpx;
+        color: #898989;
+        overflow: hidden;
+        .fontcustur {
+          float: left;
+          .space {
+            width: 48rpx;
+            height: 20rpx;
+            display: inline-block;
+          }
+        }
+        .conditionname {
+          float: left;
+          max-width: 350rpx;
+        }
+      }
+      .condition:last-child {
+        padding-top: 12rpx;
+      }
+    }
+  }
+  .price-box {
+    overflow: hidden;
+    background-color: #474647;
+    .dateTip {
+      margin-top: 70rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .line {
+        background-color: #a3a2a3;
+        width: 60rpx;
+        height: 2rpx;
+      }
+      .data-tip {
+        font-size: 28rpx;
+        color: #a3a2a3;
+        margin: 0rpx 20rpx;
+      }
+    }
+    .money {
+      margin-bottom: 60rpx;
+      margin-top: 90rpx;
+      text-align: center;
+      font-size: 78rpx;
+      color: #ffffff;
+    }
+    .money::before {
+      content: "¥";
+      font-weight: 100px;
+      font-size: 24rpx;
+      margin-right: -12rpx;
+      color: #ffffff;
+    }
+    .revaluation {
+      margin-bottom: 80rpx;
+      display: flex;
+      justify-content: center;
+      .revaluation-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      image {
+        width: 36rpx;
+        height: 36rpx;
+      }
+      .font16 {
+        font-size: 40rpx;
+        color: #f8c300;
+        padding-left: 8rpx;
+      }
+    }
+  }
+  .price-trend {
+    margin-top: 50rpx;
+    padding: 0rpx 20rpx;
+    overflow: hidden;
+    background-color: #ffffff;
+    .trend-title {
+      padding: 26rpx 0rpx;
+      border-bottom: 1px solid #f1f1f1;
+      .trend-font {
+        line-height: 32rpx;
+        color: #2f3134;
+        font-size: 30rpx;
+        padding-left: 10rpx;
+        border-left: 8rpx solid #2f3134;
+      }
+    }
+    .priceTrend {
+      width: 720rpx;
+      height: 410rpx;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      canvas {
+        float: left;
+        width: 720rpx;
+        height: 400rpx;
+      }
+    }
+  }
+  .box-jump {
+    margin: 60rpx 50rpx;
+    display: flex;
+    justify-content: space-between;
+    .jump-s1 {
+      font-size: 30rpx;
+      color: #ffffff;
+      padding: 25rpx 92rpx;
+      background-color: #f8c300;
+    }
+    .jump-s2 {
+      font-size: 30rpx;
+      color: #f8c300;
+      padding: 23rpx 90rpx;
+      background-color: #ffffff;
+      border: 2rpx solid #f8c300;
+    }
+  }
+}
+</style>
+<template>
+  <scroll-view scroll-y="true" class="srollBox">
+    <view class="container">
+      <view class="evaluate">
+        <view class="shop-box">
+          <view class="goods">
+            <image src="{{datalist.imgurl}}" class="goods-img"></image>
+            <view class="goods-box">
+              <view class="condition">
+                <view class="fontcustur">估价商品：</view>
+                <view class="conditionname">
+                  <text class="font18">{{ datalist.brand }}</text>|
+                  <text class="font16">{{ datalist.model }}</text>
+                </view>
+              </view>
+              <view class="condition">
+                <view class="fontcustur">配
+                  <i class="space"></i>件：</view>
+                <view class="conditionname">{{ datalist.parts }}</view>
+              </view>
+              <view class="condition">
+                <view class="fontcustur">成
+                  <i class="space"></i>色：</view>
+                <view class="conditionname">{{ datalist.condition }}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="price-box">
+          <view class="dateTip">
+            <i class="line"></i>
+            <view class="data-tip">估价金额仅限1个月之内</view>
+            <i class="line"></i>
+          </view>
+          <view class="money">
+            {{datalist.priceFrom}}-{{datalist.priceEnd}}
+          </view>
+          <view class="revaluation">
+            <view class="revaluation-box">
+              <image src="../images/yuan_icon.svg"></image>
+              <navigator url="./valFist" class="font16" @tap="deltetData({{ datalist.id }})">重新估价</navigator>
+            </view>
+          </view>
+        </view>
+        <view class="price-trend">
+          <view class="trend-title">
+            <view class="trend-font">价格走势</view>
+          </view>
+          <view class="priceTrend">
+            <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+          </view>
+        </view>
+        <view class="box-jump">
+          <view class="jump-s1" @tap="clickto1({{ datalist.id }})">预约回收</view>
+          <view class="jump-s2" @tap="clickto2({{ datalist.id }})">暂不回收</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import WxCharts from '../mixins/wxcharts'
+var lineChart = null
+export default class Evaluate extends wepy.page {
+  config = {
+    navigationBarTitleText: '当前估价'
+  }
+  data = {
+    getdata: '',
+    datalist: {
+      id: 9898,
+      imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+      brand: 'Dior',
+      model: '手提包',
+      parts: '发票、身份卡、防尘袋',
+      condition: '五金件正常使用痕迹外表面明瑕疵',
+      priceFrom: '5900',
+      priceEnd: '5620',
+      dataArr: {
+        daraJz: ['9821', '1423', '4234', '2132'],
+        daraHt: ['2232', '5243', '1124', '1212'],
+        daraXp: ['3366', '2363', '2123', '1132'],
+        DateArr: ['04-05', '04-10', '04-15', '04-20']
+      }
+    }
+  }
+  methods = {
+    clickto1(id) {
+      wepy.navigateTo({
+        url: `../pages/register?id=${id}`
+      })
+    },
+    clickto2(id) {
+      wepy.navigateTo({
+        url: `../pages/recycleOrder`
+      })
+    },
+    deltetData(id) {
+      // 删除本单元得数组
+    },
+    touchHandler(e) {
+      // 图标的点击事件  该部分功能正式没有加载项目中    后续的点击事件 可以将数据显示在需要显示的地方   提高交互
+      console.log('123', lineChart.getCurrentDataIndex(e))
+    }
+  }
+  onLoad() {
+    wepy.getStorage({
+      key: 'valuationData',
+      success: function (res) {
+        // console.log(res.data)
+      }
+    })
+    lineChart = new WxCharts({
+      canvasId: 'lineCanvas',
+      type: 'line',           // 图表类型  本项目中使用的是折现图   line   可选类型（pie, line, column, area, ring, radar）
+      animation: false,       // 是否显示加载时的动画
+      dataLabel: false,       // 是否在图标中显示数据内容
+      dataPointShape: false,  // 是否在图表中显示数据点图标标识
+      legend: true,           // 是否显示图标下方各类型的标识
+      disablePieStroke: true,     // 不绘制饼图（圆环图）各区块的白色分割线
+      categories: this.datalist.dataArr.DateArr,
+      series: [{           // 数据内容添加在这里
+        color: '#f8c300',
+        name: '简直回收',
+        data: this.datalist.dataArr.daraJz
+      }, {
+        color: '#757676',
+        name: '海淘',
+        data: this.datalist.dataArr.daraHt
+      }, {
+        color: '#6abd93',
+        name: '新品',
+        data: this.datalist.dataArr.daraXp
+      }],
+      xAxis: {
+        type: 'calibration',
+        disabled: true,
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        disableGrid: false
+      },
+      yAxis: {
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        disableGrid: false,
+        min: 0,
+        format: function (val) {
+          return '¥ ' + val.toFixed(0)
+        }
+      },
+      width: 320,
+      height: 200
+    })
+  }
+}
+</script>

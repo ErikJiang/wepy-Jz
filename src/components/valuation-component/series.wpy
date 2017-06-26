@@ -1,0 +1,47 @@
+<style lang="less">
+.valseries {
+  overflow: hidden;
+  .valseries-box {
+    width: 100%;
+    overflow: hidden;
+  }
+  .forget{
+    width: 100%;
+    padding: 30rpx 0;
+    text-align: center;
+    color: #474647;
+    font-size: 28rpx;
+    background-color: #ffffff;
+  }
+}
+</style>
+<template>
+  <view class="valseries">
+    <view class="valseries-box">
+      <repeat for="{{listdata}}" index="index" item="item" key="index">
+        <Seriestag :shenfun="item" />
+      </repeat>
+    </view>
+    <view class="forget">忘记哪一系列了</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import Seriestag from './chil/seriestag'
+export default class Valseries extends wepy.component {
+  props = {
+    listdata: {}
+  }
+  components = {
+    Seriestag
+  }
+  events = {
+    'series-ls': (t) => {
+      if (t) {
+        this.listdata = t
+      }
+    }
+  }
+}
+</script>

@@ -1,0 +1,292 @@
+<style lang="less">
+.Valtag {
+  overflow: hidden;
+  width: 200rpx;
+  float: left;
+  margin-left: 40rpx;
+  image {
+    width: 200rpx;
+    height: 200rpx;
+    background-color: #ffffff;
+  }
+  .Valtag-font16 {
+    color: #898989;
+    font-size: 34rpx;
+    padding: 20rpx;
+  }
+}
+</style>
+<template>
+  <view class="Valtag" @tap="valtag({{listdata.id}}, {{ listdata.name }})">
+    <image src="{{ listdata.url }}"></image>
+    <view class="Valtag-font16">{{listdata.name}}</view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+export default class Valtag extends wepy.component {
+  props = {
+    listdata: {}
+  }
+  data = {
+    list: {
+      defaulList: [
+        {
+          id: 123412,
+          typeN: 'HOBO手袋',
+          typelogo: '../images/val_lv_icon_1@2x.svg',
+          series: [
+            {
+              id: 43534,
+              serieN: 'Artsy',
+              serieinfo: '杀手包',
+              size: [
+                {
+                  id: 75656,
+                  name: '大号',
+                  logo: '../images/val_lv_icon_1@2x.svg',
+                  material: [
+                    {
+                      id: 15465,
+                      name: '材质',
+                      logo: '../images/val_lv_icon_1@2x.svg',
+                      condition: [
+                        {
+                          id: 15465,
+                          name: '成色1',
+                          logo: '../images/val_lv_icon_1@2x.svg',
+                          cond1: [
+                            {
+                              id: 15465,
+                              name: '成色2-1',
+                              logo: '../images/val_lv_icon_1@2x.svg',
+                              checked: false,
+                              cond2: [
+                                {
+                                  id: 15465,
+                                  name: '成色3-1',
+                                  checked: false,
+                                  logo: '../images/val_lv_icon_1@2x.svg',
+                                  cond3: [
+                                    {
+                                      id: 15465,
+                                      name: '成色4-1',
+                                      checked: false,
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    },
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-2',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    }
+                                  ]
+                                },
+                                {
+                                  id: 15465,
+                                  name: '成色3-2',
+                                  checked: false,
+                                  logo: '../images/val_lv_icon_1@2x.svg',
+                                  cond3: [
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-1',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    },
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-2',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              id: 15465,
+                              checked: false,
+                              name: '成色2-2',
+                              logo: '../images/val_lv_icon_1@2x.svg',
+                              cond2: [
+                                {
+                                  id: 15465,
+                                  checked: false,
+                                  name: '成色3-1',
+                                  logo: '../images/val_lv_icon_1@2x.svg',
+                                  cond3: [
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-1',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    },
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-2',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    }
+                                  ]
+                                },
+                                {
+                                  id: 15465,
+                                  checked: false,
+                                  name: '成色3-2',
+                                  logo: '../images/val_lv_icon_1@2x.svg',
+                                  cond3: [
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-1',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    },
+                                    {
+                                      id: 15465,
+                                      checked: false,
+                                      name: '成色4-2',
+                                      logo: '../images/val_lv_icon_1@2x.svg'
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      hostStyle: [
+        {
+          id: 123412,
+          typeN: 'HOBO手袋',
+          typelogo: '../images/val_lv_icon_1@2x.svg',
+          series: [
+            {
+              id: 43534,
+              serieN: 'Artsy',
+              serieinfo: '杀手包',
+              size: [
+                {
+                  id: 75656,
+                  name: '大号',
+                  logo: '../images/val_lv_icon_1@2x.svg',
+                  material: [
+                    {
+                      id: 15465,
+                      name: 'monogram',
+                      logo: '../images/val_lv_icon_1@2x.svg'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 123412,
+          typeN: 'HOBO手袋',
+          typelogo: '../images/val_lv_icon_1@2x.svg',
+          series: [
+            {
+              id: 43534,
+              serieN: 'Artsy',
+              serieinfo: '杀手包',
+              size: [
+                {
+                  id: 75656,
+                  name: '大号',
+                  logo: '../images/val_lv_icon_1@2x.svg',
+                  material: [
+                    {
+                      id: 15465,
+                      name: 'monogram',
+                      logo: '../images/val_lv_icon_1@2x.svg'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 123412,
+          typeN: 'HOBO手袋',
+          typelogo: '../images/val_lv_icon_1@2x.svg',
+          series: [
+            {
+              id: 43534,
+              serieN: 'Artsy',
+              serieinfo: '杀手包',
+              size: [
+                {
+                  id: 75656,
+                  name: '大号',
+                  logo: '../images/val_lv_icon_1@2x.svg',
+                  material: [
+                    {
+                      id: 15465,
+                      name: 'monogram',
+                      logo: '../images/val_lv_icon_1@2x.svg'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 123412,
+          typeN: 'HOBO手袋',
+          typelogo: '../images/val_lv_icon_1@2x.svg',
+          series: [
+            {
+              id: 43534,
+              serieN: 'Artsy',
+              serieinfo: '杀手包',
+              size: [
+                {
+                  id: 75656,
+                  name: '大号',
+                  logo: '../images/val_lv_icon_1@2x.svg',
+                  material: [
+                    {
+                      id: 15465,
+                      name: 'monogram',
+                      logo: '../images/val_lv_icon_1@2x.svg'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+  methods = {
+    valtag(id, n) {
+      let datalist = {
+        list: this.list,
+        state: 2
+      }
+      wepy.navigateTo({
+        url: `./valuation?id=${id}&brand=${n}`
+      })
+      wepy.setStorageSync('postList', datalist)
+      wepy.setStorage({
+        key: 'postList',
+        data: datalist
+      })
+    }
+  }
+}
+</script>

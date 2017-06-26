@@ -1,0 +1,41 @@
+<style lang="less">
+.exterior {
+  width: 100%;
+  margin-top: 10rpx;
+  background-color: #ffffff;
+  padding-bottom: 82rpx;
+  .imgarr {
+    margin: 0rpx 20rpx;
+    .imgurl{
+      width: 100%;
+    }
+  }
+}
+</style>
+<template>
+  <view class="exterior">
+    <Titlelist titletips="外观展示" />
+    <repeat for="{{getdata}}" index="index" item="item" key="index">
+      <view class="imgarr">
+        <image class="imgurl" src="{{item}}"></image>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Titlelist from './titlelist'
+
+export default class Exterior extends wepy.component {
+  computed = {
+    getdata() {
+      return this.$parent.exteriordata
+    }
+  }
+
+  components = {
+    Titlelist
+  }
+}
+</script>

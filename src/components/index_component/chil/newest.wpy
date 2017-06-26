@@ -1,0 +1,137 @@
+<style lang="less">
+.newest {
+  overflow: hidden;
+  .swiperBox {
+    overflow: hidden;
+    height: 660rpx;
+    .swiper-itemBox{
+      overflow: hidden;
+    }
+  }
+  .newestBox{
+    overflow: hidden;
+    height: 650rpx;
+    position: relative;
+  }
+}
+</style>
+<template>
+  <view class="newest">
+    <TitleLink titleTips="最新回收" link="../pages/recycling" rowicon="显示"></TitleLink>
+    <view class="newestBox">
+      <swiper indicator-dots="true" autoplay="true" interval="15000" duration="1000" circular="true" class="swiperBox">
+      <repeat for="{{swiperItem}}" index="index" item="item" key="index">
+        <swiper-item class="swiper-itemBox">
+          <List :feedlist="item"></List>
+        </swiper-item>
+      </repeat>
+    </swiper>
+    </view>   
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import List from './list'
+import TitleLink from './titleLink'
+export default class Newest extends wepy.component {
+  props = {
+    list: '',
+    linkinfo: '',
+    thislink: ''
+  }
+
+  components = {
+    List,
+    TitleLink
+  }
+
+  data = {
+    dataArray: [
+      {
+        id: 1,
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        closingTime: '2016-6-24',
+        recPrice: '7500',
+        newDegree: '95新'
+      },
+      {
+        id: 2,
+        imgurl: 'http://img.91sph.com/goods//20170509//9fdf03bd-63b2-4d63-9703-90ea81eda0d2_s1.jpg',
+        brand: 'Louis Vuitton',
+        model: 'LV路易·威登老花蒙田中号手提包',
+        closingTime: '2016-6-4',
+        recPrice: '9800',
+        newDegree: '92新'
+      },
+      {
+        id: 3,
+        imgurl: 'http://img.91sph.com/goods//20170522//599b7815-b29a-416e-891f-01bf428a0403_s1.jpg',
+        brand: 'FENDI',
+        model: 'FENDI芬迪男士单肩包手提包',
+        closingTime: '2017-5-24',
+        recPrice: '40500',
+        newDegree: '95新'
+      },
+      {
+        id: 4,
+        imgurl: 'http://img.91sph.com/goods//20170311//aa0c7cd2-4b21-4ad2-868f-216a8e3bcea4_s1.jpg',
+        brand: 'CHANEL',
+        model: 'CHANEL香奈儿单肩包',
+        closingTime: '2017-3-18',
+        recPrice: '9199',
+        newDegree: '95新'
+      },
+      {
+        id: 5,
+        imgurl: 'http://img.91sph.com/goods//20170406//e0cdaa71-69e7-48ff-81a5-6040e6d3dcdc_s1.jpg',
+        brand: 'Dior',
+        model: 'Dior迪奥戴妃包',
+        closingTime: '2016-7-24',
+        recPrice: '7500',
+        newDegree: '95新'
+      },
+      {
+        id: 6,
+        imgurl: 'http://img.91sph.com/goods//20170509//9fdf03bd-63b2-4d63-9703-90ea81eda0d2_s1.jpg',
+        brand: 'Louis Vuitton',
+        model: 'LV路易·威登老花蒙田中号手提包',
+        closingTime: '2016-6-4',
+        recPrice: '9800',
+        newDegree: '92新'
+      },
+      {
+        id: 7,
+        imgurl: 'http://img.91sph.com/goods//20170522//599b7815-b29a-416e-891f-01bf428a0403_s1.jpg',
+        brand: 'FENDI',
+        model: 'FENDI芬迪男士单肩包手提包',
+        closingTime: '2017-5-24',
+        recPrice: '40500',
+        newDegree: '95新'
+      },
+      {
+        id: 8,
+        imgurl: 'http://img.91sph.com/goods//20170311//aa0c7cd2-4b21-4ad2-868f-216a8e3bcea4_s1.jpg',
+        brand: 'CHANEL',
+        model: 'CHANEL香奈儿单肩包',
+        closingTime: '2017-3-18',
+        recPrice: '9199',
+        newDegree: '95新'
+      }
+    ]
+  }
+
+  computed = {
+    swiperItem() {
+      let dataArr = this.dataArray
+      let newArr = []
+      for (let i = 0, len = dataArr.length; i < len; i += 2) {
+        newArr.push(dataArr.slice(i, i + 2))
+      }
+      return newArr
+    }
+  }
+}
+</script>

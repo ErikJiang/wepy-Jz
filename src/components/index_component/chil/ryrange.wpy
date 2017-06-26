@@ -1,0 +1,76 @@
+ 
+<style lang="less">
+// 首页回收范围
+.ryrange {
+  overflow: hidden;
+  .ryrange-Box {
+    margin: 0px 10px;
+    background-color: #ffffff;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(155, 155, 155, 0.50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 78rpx;
+    .ryrange-img {
+      width: 260rpx;
+      height: 170rpx;
+      margin-top: 56rpx;
+    }
+    i {
+      width: 4rpx;
+      height: 300rpx;
+      background-color: #c8c8c8;
+      margin-top: 60rpx;
+    }
+    .adess {
+      width: 400rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .fontcolor{
+        color:#2b2b2b;
+      }
+    }
+    .font14 {
+      font-size: 14px;
+      margin-top: 26rpx;
+      color: #868686;
+    }
+  }
+}
+
+</style>
+<template>
+  <view class="ryrange">
+    <TitleLink titleTips="回收范围" link="" rowicon="隐藏"></TitleLink>
+    <view class="ryrange-Box">
+      <view class="adess">
+        <image class="ryrange-img" src="../../../images/range_city_icon@1x.svg"></image>
+        <view class="font14 fontcolor">上海 | SHANGHAI</view>
+        <view class="font14">中环以内地区</view>
+        <view class="font14">(部分中环外地区)</view>
+      </view>
+      <i></i>
+      <view class="adess">
+        <image class="ryrange-img" src="../../../images/range_brand_icon@1x.svg"></image>
+        <view class="font14 fontcolor">品牌 | BRAND</view>
+        <view class="font14">暂只回收部分品牌</view>
+        <view class="font14">包包类产品</view>
+      </view>
+    </view>
+  </view>
+</template>
+  
+<script>
+import wepy from 'wepy'
+import TitleLink from './titleLink'
+export default class Ryrange extends wepy.component {
+  props = {}
+
+  components = {
+    TitleLink
+  }
+}
+</script>

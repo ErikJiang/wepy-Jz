@@ -1,0 +1,98 @@
+<style lang="less">
+.priceTrend {
+  width: 100%;
+  margin-top: 10rpx;
+  background-color: #ffffff;
+  .pt-box {
+    margin: 0 20rpx;
+    margin-top: 30rpx;
+    padding-bottom: 36rpx;
+    .pt-imgurl {
+      width: 100%;
+    }
+  }
+  .canvas {
+    width: 720rpx;
+    height: 400rpx;
+  }
+}
+</style>
+<template>
+  <view class="priceTrend">
+    <Titlelist titletips="价格走势"></Titlelist>
+    <view class="pt-box" getdata="getdata">
+      <canvas canvas-id="priceCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Titlelist from './titlelist'
+import WxCharts from '../../mixins/wxcharts'
+var lineChart = null
+export default class PriceTrend extends wepy.component {
+  data = {
+    trendData: ''
+  }
+  computed = {
+    getdata() {
+      this.trendData = this.$parent.trendlist
+    }
+  }
+  methods = {
+    touchHandler(e) {
+      // lineChart.getCurrentDataIndex(e)
+      // 图标的点击事件  该部分功能正式没有加载项目中    后续的点击事件 可以将数据显示在需要显示的地方   提高交互
+      console.log(lineChart.getCurrentDataIndex(e))
+    }
+  }
+  components = {
+    Titlelist
+  }
+  onLoad() {
+    let self = this
+    lineChart = new WxCharts({
+      canvasId: 'priceCanvas',
+      type: 'line',           // 图表类型  本项目中使用的是折现图   line   可选类型（pie, line, column, area, ring, radar）
+      animation: false,       // 是否显示加载时的动画
+      dataLabel: false,       // 是否在图标中显示数据内容
+      dataPointShape: false,  // 是否在图表中显示数据点图标标识
+      legend: true,           // 是否显示图标下方各类型的标识
+      disablePieStroke: true,     // 不绘制饼图（圆环图）各区块的白色分割线
+      categories: self.trendData.DateArr,
+      series: [{           // 数据内容添加在这里
+        color: '#f8c300',
+        name: '简直回收',
+        data: this.trendData.daraJz
+      }, {
+        color: '#757676',
+        name: '海淘',
+        data: this.trendData.daraHt
+      }, {
+        color: '#6abd93',
+        name: '新品',
+        data: this.trendData.daraXp
+      }],
+      xAxis: {
+        type: 'calibration',
+        disabled: true,
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        disableGrid: false
+      },
+      yAxis: {
+        gridColo: '#f1f1f1',
+        fontColor: '#a6a6a6',
+        disableGrid: false,
+        min: 0,
+        format: function (val) {
+          return '¥ ' + val.toFixed(0)
+        }
+      },
+      width: 320,
+      height: 200
+    })
+  }
+}
+</script>
